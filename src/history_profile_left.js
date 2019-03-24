@@ -4,20 +4,20 @@ class History_Profile_Left extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName = "John",
-      lastName = "Do",
-      imageURL = "default.jpg",
-      bio = "This is the story of my life.",
+      firstName: "John",
+      lastName: "Do",
+      imageURL: '../imgs/defaultProfile',
+      bio: "This is the story of my life.",
     };
   }
   render() {
     return (
-      <div>
-        <h3> {this.state.firstName} {this.state.lastName} <h3>
-        <br>
-        // add image here
-        <br>
-        Bio: {this.state.bio}
+      <div className="profile">
+        <h2> {this.state.firstName} {this.state.lastName} </h2>
+        <br />
+        <img src = {this.state.imageURL}/>
+        <br />
+        <p> Bio: {this.state.bio} </p>
       </div>
     );
   }
