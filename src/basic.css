@@ -1,0 +1,17 @@
+body {
+  background-color: rgb(46, 46, 46);
+  font-family: Calibri, sans-serif;
+  color: white;
+}
+
+.largeui {
+  font-size: 15em;
+}
+
+.smallui {
+  font-size: 12em;
+}
+
+.titleui {
+  font-size: 24em;
+}
