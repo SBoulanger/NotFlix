@@ -4,6 +4,16 @@ body {
   color: white;
 }
 
+.actionbar {
+  background-color: rgb(36, 36, 36);
+  width: 1920px;
+  position: relative;
+  height: 40px;
+}
+.actionbarelement {
+  position: absolute;
+  right: 0px;
+}
 .largeui {
   font-size: 15em;
 }
