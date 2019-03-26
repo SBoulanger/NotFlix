@@ -1,23 +1,36 @@
-import React from 'react'
-
+import React from 'react';
+import firebase from './Firestore'
 class History_Profile_Left extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      firstName: "John",
-      lastName: "Do",
-      imageURL: '../imgs/defaultProfile',
-      bio: "This is the story of my life.",
+      userName : "",
+      firstName : "",
+      lastName : "",
+      imageURL : "default.jpg",
+      bio : "",
     };
   }
+  componentDidMount() {
+   firebase.firestore().collection('users')
+    .doc('P3Fb8A9YaxaLcobOGejl')
+    .get()
+    .then(doc => this.setState({
+      userName: doc.data().username,
+      firstName: doc.data().FirstName,
+      lastName: doc.data().LastName,
+      bio: doc.data().Biography}));
+  }
+
   render() {
     return (
-      <div className="profile">
-        <h2> {this.state.firstName} {this.state.lastName} </h2>
+      <div>
+        <h3> Hi {this.state.userName}! </h3>
         <br />
-        <img src = {this.state.imageURL}/>
+        // add image here
         <br />
-        <p> Bio: {this.state.bio} </p>
+        Your Bio: {this.state.bio}
       </div>
     );
   }

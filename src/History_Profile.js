@@ -1,7 +1,8 @@
-import React from 'react'
-import History_Profile_Left from './history_profile_left'
-import History_Profile_SocialBox from './History_Profile_SocialBox'
-import History_Profile_Right from './History_Profile_Right'
+import React from 'react';
+import HistoryProfileLeft from './history_profile_left';
+import HistoryProfileSocialBox from './History_Profile_SocialBox';
+import HistoryProfileRight from './History_Profile_Right';
+import fire from './Firestore';
 
 const style = {
   display: 'flex',
@@ -11,12 +12,13 @@ const style = {
 };
 
 class History_Profile extends React.Component {
+
   render() {
     return (
       <div className="profile" style = {style}>
-        <History_Profile_Left />
-        <History_Profile_SocialBox />
-        <History_Profile_Right />
+        <HistoryProfileLeft />
+        <HistoryProfileSocialBox />
+        <HistoryProfileRight />
       </div>
     );
   }
