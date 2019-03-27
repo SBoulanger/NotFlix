@@ -22,11 +22,32 @@ class NavBar extends React.Component {
                 <a className="logo" href="#logo">
                     <img className="logo" src={NotflixLogo} height={70} alt="this is wack"/>
                 </a>
+                <p>.     .</p>
 
                 <a className="home" href="/#home">Home</a>
-                <div className="spacer"></div>
+
                 <input href="#search" className="search-bar" type="text" placeholder="Search Movies and TV..."></input>
                 <a className="profile" href="/#profile">Profile</a>
+            </div>
+        )
+    }
+
+    render_wip() {
+        return (
+            <div>
+                <ul id="stats">
+                    <li>
+                        <a href="#logo">
+                            <span className="listHeader">
+                                <img src={NotflixLogo} height={50}/>
+                            </span>
+                        </a>
+                    </li>
+                    <li><a href="#home"><span className="listHeader">67</span></a></li>
+                    <li><a href="#blank"><span className="listHeader">67</span></a></li>
+                    <li><a href="#search"><span className="listHeader">67</span></a></li>
+                    <li><a href="#profile"><span className="listHeader">67</span></a></li>
+                </ul>
             </div>
         )
     }
