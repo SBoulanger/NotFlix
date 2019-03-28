@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import HistoryProfile from './History_Profile';
 import App from './App';
+import HistoryPage from './History_Page';
 import * as serviceWorker from './serviceWorker';
 
 //You can change this render function to check on your components
 //Change HistoryProfile to YourAppFile
-ReactDOM.render(<HistoryProfile />, document.getElementById('root'));
+ReactDOM.render(<HistoryPage />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
