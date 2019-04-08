@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import Notflix from './img/Notflix.png';
+import Notflix from './imgs/Notflix.png';
 import Button from './Button.js';
 import InputTextBox from './InputTextBox.js';
 import LinkText from './LinkText.js';
