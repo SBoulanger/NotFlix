@@ -39,7 +39,7 @@ class NewSignUp extends Component {
               <p> <InputTextBox promptText="Email here" type = "text" id = "EmailBox" /> </p> 
               <p> <InputTextBox promptText="Password here" type = "password" id = "PasswordBox" /> </p>
               <p> <InputTextBox promptText="Confirm password" type = "password" id = "ConfirmPassword" /> </p>
-              <p> <Button text="Sign Up"/> </p>
+              <p> <Button type="Submit" text="Sign Up"/> </p>
               <p> <LinkText pathway="https://www.google.com" label="Already a member?" /> </p>
              </form>
             </body>
