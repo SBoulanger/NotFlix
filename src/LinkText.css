@@ -1,0 +1,16 @@
+a {
+        text-decoration: none;
+        font-family: sans-serif;
+}
+
+a:link{
+        color: lightblue;
+}
+
+a:visited{
+        color: lightblue;
+}
+
+a:hover{
+        color: lightpink;
+}
