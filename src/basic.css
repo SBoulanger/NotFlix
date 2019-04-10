@@ -12,16 +12,36 @@ body {
 }
 .actionbarelement {
   position: absolute;
+  right: 50px;
+}
+.mainmovie{
+  width: 1920px;
+  position: relative;
+}
+.mainmovieimg{
+  position: absolute;
+  left: 40px;
+  top: 100px;
+}
+.mainmovietext{
+  position: absolute;
+  right: 200px;
+  top: 100px;
+}
+.mainmovierating{
+  position: absolute;
   right: 0px;
+  top: 60px;
 }
 .largeui {
-  font-size: 15em;
+  font-size: 3em;
 }
 
 .smallui {
-  font-size: 12em;
+  font-size: 30px;
+  width: 1000px;
 }
 
 .titleui {
-  font-size: 24em;
+  font-size: 80px;
 }
