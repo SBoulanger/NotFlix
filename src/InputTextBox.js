@@ -6,9 +6,9 @@ class InputTextBox extends Component {
                 super(props);
                 this.promptText = this.promptText;
                 this.type = this.type;
-                this.id = this.id; {/*id for CSS*/}
-                this.onchange = this.onchange; {/*pass in function*/}
-                this.name = this.name; {/*name to get value from component*/}
+                this.id = this.id; /*id for CSS*/
+                this.onchange = this.onchange; /*pass in function*/
+                this.name = this.name; /*name to get value from component*/
         }
 
         render() {
