@@ -1,0 +1,110 @@
+.SignIn {
+        text-align: center;
+}
+
+.NewSignUp {
+        text-align: center;
+}
+
+.Left-column {
+        width: 50%;
+        float: left;
+}
+
+.Right-column {
+        width: 50%;
+        float: right;
+}
+
+.Main-container {
+        padding-top: 10px;
+        padding-left: 150px;
+        padding-right: 150px;
+}
+
+.Notflix-logo {
+        width: 90%;
+        height: auto; 
+        padding-top: 100px; 
+}
+
+.Corner-column {
+        width: 100%;
+        height: 200px;
+}
+
+.Shooting {
+        width: 15%;
+        height: auto;
+        float: right;
+}
+
+.Button-container {
+        padding-left: 150px;
+        padding-right: 150px;
+        padding-bottom: 100px;
+}
+
+.LoginBtn {
+        float: left;
+        width: 45%
+}
+
+.SignupBtn {
+        float: right;
+        width: 45%;
+}
+
+.CreateBtn {
+        padding-right: 200px;
+        padding-left: 200px;
+        padding-bottom: 150px;
+}
+
+.Welcome-label {
+        font-family: "Helvetica Neue";
+        font-weight: bold;
+        color: white;
+        font-size: 30px;
+        padding-bottom: 60px;
+}
+
+.Email-label {
+        font-family: "Helvetica Neue";
+        font-weight: bold;
+        color: white;
+        text-align: left;
+        padding-bottom: 20px;
+}
+
+.Password-label {
+        font-family: "Helvetica Neue";
+        font-weight: bold;
+        color: white;
+        text-align: left;
+        padding-bottom: 20px;
+}
+
+.Email-column {
+        padding-bottom: 40px;
+        padding-left: 100px;
+        padding-right: 100px;
+}
+
+.Password-column {
+        padding-bottom: 40px;
+        padding-left: 100px;
+        padding-right: 100px;
+}
+
+/* .SignIn-header{
+        background-color #282c34;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: calc(10px +2vmin);
+        color: white;
+} */
+
