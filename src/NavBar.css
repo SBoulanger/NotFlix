@@ -75,6 +75,7 @@
     display: inline-block;
     height: 30px;
     margin-left: 200px;
+    margin-right: 200px;
     min-width: 200px;
     padding-left: 100px;
 }
