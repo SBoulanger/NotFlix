@@ -1,0 +1,18 @@
+.SignupButton {
+    padding: 20px;
+    border: none;
+    background-color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 30px;
+    transition-duration: 0.4s;
+    font-family: "Helvetica Neue";
+    font-weight: bold;
+    color: black;
+    width: 100%;
+    font-size: 15px;
+}
+.SignupButton:hover{
+    font-weight: 500;
+}

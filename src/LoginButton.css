@@ -1,0 +1,18 @@
+.LoginButton {
+    padding: 20px;
+    border: none;
+    background-color: #ED1F25;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 30px;
+    transition-duration: 0.4s;
+    font-family: "Helvetica Neue";
+    font-weight: bold;
+    color: white;
+    width: 100%;
+    font-size: 15px;
+}
+.LoginButton:hover{
+    font-weight: 500;
+}
