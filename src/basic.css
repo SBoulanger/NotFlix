@@ -6,7 +6,7 @@ body {
 
 .actionbar {
   background-color: rgb(36, 36, 36);
-  width: 1920px;
+  width: 100%;
   position: relative;
   height: 40px;
 }
