@@ -9,7 +9,7 @@ class Main_Movie extends React.Component{
         return (
             <div className = "mainmovie">
                 <div className ="mainmovieimg"><Movieimg /></div>
-                <div className="mainmovietext"> <Movie_Page_Text /></div>
+                <div className="mainmovietext"> <Movie_Page_Text movieID={this.props.movieID}/></div>
                 <div className="mainmovierating"><Rating /></div>
             </div>
         );

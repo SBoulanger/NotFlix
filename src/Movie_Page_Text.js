@@ -5,20 +5,27 @@ import './basic.css'
 class Movie_Page_Text extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
             title : "",
             description : "",
         };
     }
     componentDidMount() {
-        firebase.firestore().collection('movies')
-            .doc('10020')
-            .get()
-            .then(doc => this.setState({
-                title: doc.data().title,
-                description: doc.data().overview})
-            );
+        var movieRef = firebase.firestore().collection('movies').doc(this.props.movieID);
+        var getMovie = movieRef.get()
+            .then(doc => {
+                if (doc.exists) {
+                    this.setState({
+                        title: doc.data().title,
+                        description: doc.data().overview
+                    })
+                }
+                else {
+                    this.setState({
+                        title: "Movie not found"
+                    })
+                }
+            });
     }
 
     render() {

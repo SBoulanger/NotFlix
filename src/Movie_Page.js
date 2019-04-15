@@ -10,7 +10,7 @@ class Movie_Page extends React.Component{
             <div>
                 <NavBar />
                 <Action_Bar />
-                <Main_Movie />
+                <Main_Movie movieID={this.props.movieID}/>
 
             </div>
         );
