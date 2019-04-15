@@ -6,11 +6,12 @@ import App from './App';
 import HistoryPage from './History_Page';
 import * as serviceWorker from './serviceWorker';
 import Movie_Page from "./Movie_Page";
+import SignIn from "./SignIn"
 
 //You can change this render function to check on your components
 //Change HistoryProfile to YourAppFile
 
-ReactDOM.render(<Movie_Page />, document.getElementById('root'));
+ReactDOM.render(<SignIn />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
