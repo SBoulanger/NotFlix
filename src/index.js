@@ -5,8 +5,8 @@ import HistoryProfile from './History_Profile';
 import App from './App';
 import HistoryPage from './History_Page';
 import * as serviceWorker from './serviceWorker';
-import Movie_Page from "./Movie_Page";
-import SignIn from "./SignIn"
+import MoviePage from "./Movie_Page";
+import SignIn from "./SignIn";
 
 //You can change this render function to check on your components
 //Change HistoryProfile to YourAppFile

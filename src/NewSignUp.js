@@ -9,25 +9,26 @@ import LoginButton from './LoginButton.js';
 import SignInUpTextBox from './Sign_in_up_textbox.js'
 
 class NewSignUp extends Component {
-   
+
    constructor() {
       super();
       this.state = {
          username: '',
          email: '',
          password:'',
-         confirmation:''
+         confirmation:'Hi',
+         username:''
       }
       this.updateInput = this.updateInput.bind(this);
       this.addUser = this.addUser.bind(this);
    }
-   
+
    /* Re-renders page using SignIn.js component */
    toSignIn(){
       ReactDOM.render(<SignIn/>, document.getElementById('root'));
    }
 
-   /* NOT WORKING: Intended to update state to whatever is in InputTextBox */
+   /* WORKING: Intended to update state to whatever is in InputTextBox */
    updateInput = e => {
       this.setState({
          [e.target.name]: e.target.value
@@ -40,14 +41,14 @@ class NewSignUp extends Component {
 
    /* INCOMPLETE
    Intended actions:
-      1) make new document in Firestore with new credentials  
+      1) make new document in Firestore with new credentials - WORKING
       2) generate cookie
       3) redirect to user's home page
    */
    addUser = e => {
       e.preventDefault();
       /*INCOMPLETE: Add check so that password and confirmation states are same string.
-      If password == confirmation, proceed below. Else, show user that there is a mistake 
+      If password == confirmation, proceed below. Else, show user that there is a mistake
       or a user with those credentials doesn't exist.
       */
       // const db = firebase.firestore();
@@ -68,10 +69,10 @@ class NewSignUp extends Component {
       firebase.createUser(username, email, password);
 
 
-      /*INCOMPLETE: Generate cookie with auto-ID as credentials. Rerender using cookie to 
+      /*INCOMPLETE: Generate cookie with auto-ID as credentials. Rerender using cookie to
       user home page.*/
    }
-   
+
    /*Initial render*/
    render() {
       // return (
@@ -80,7 +81,7 @@ class NewSignUp extends Component {
       //          <img src = {Notflix} className = "Notflix-logo" style = {{width: '30%'}} />
       //       <form onSubmit = {this.addUser}>
       //         {
-      //          <p> <InputTextBox promptText="Email here" type = "text" id = "EmailBox" name = "email" onchange = {this.updateInput} value = {this.state.email} /> </p> 
+      //          <p> <InputTextBox promptText="Email here" type = "text" id = "EmailBox" name = "email" onchange = {this.updateInput} value = {this.state.email} /> </p>
       //          <p> <InputTextBox promptText="Password here" type = "password" id = "PasswordBox" name = "password" onchange = {this.updateInput} value = {this.state.password} /> </p>
       //          <p> <InputTextBox promptText="Confirm password" type = "password" id = "ConfirmPassword" / name = "confirmation" onchange = {this.updateInput} value = {this.state.confirmation}> </p>
       //          <p> <Button type="Submit" text="Sign Up"/> </p>
@@ -96,9 +97,9 @@ class NewSignUp extends Component {
             <div className = "Corner-column">
                <img src = {Shooting} className = "Shooting"/>
             </div>
-            <div className = "Main-container">  
+            <div className = "Main-container">
                <div className = "Left-column">
-                  <img src = {Notflix} className = "Notflix-logo"/> 
+                  <img src = {Notflix} className = "Notflix-logo"/>
                </div>
                <div className = "Right-column">
                   <div className = "Welcome-column">
@@ -106,11 +107,11 @@ class NewSignUp extends Component {
                   </div>
                   <div className = "Email-column">
                      <div className = "Email-label"> Username </div>
-                     <div> <SignInUpTextBox type = "text" id = "UserBox" name="user" value = {this.state.username} onchange={this.updateInput}/> </div> 
+                     <div> <SignInUpTextBox type = "text" id = "UserBox" name="user" value = {this.state.username} onchange={this.updateInput}/> </div>
                   </div>
                   <div className = "Email-column">
                      <div className = "Email-label"> Email Address </div>
-                     <div> <SignInUpTextBox type = "text" id = "EmailBox" name="email" value = {this.state.email} onchange={this.updateInput}/> </div> 
+                     <div> <SignInUpTextBox type = "text" id = "EmailBox" name="email" value = {this.state.email} onchange={this.updateInput}/> </div>
                   </div>
                   <div className = "Password-column">
                      <div className = "Password-label"> Password </div>
@@ -122,7 +123,7 @@ class NewSignUp extends Component {
                   </div>
                   <div>
                      <div className = "CreateBtn"> <LoginButton  onClick={this.addUser} id ='createButton' text="Create"/> </div>
-                  </div> 
+                  </div>
                </div>
             </div>
           </div>
@@ -131,4 +132,3 @@ class NewSignUp extends Component {
 }
 
 export default NewSignUp;
-
