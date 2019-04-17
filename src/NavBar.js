@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './NavBar.css';
 import NotflixLogo from './imgs/Notflix.png';
+import Cookie from './Cookie';
+import Modal from './Modal'
 
 class NavBar extends React.Component {
 
@@ -9,13 +11,25 @@ class NavBar extends React.Component {
 
         // How to create State variables
         this.state = {
-            var1: "",
-            var2: 0,
-            etc: ""
+            status : "",
+            show : false
         };
     }
 
+    //functions to hide/show the modal
+    showModal = () => {this.setState({show: true})}
+    hideModal = () => {this.setState({show: false})}
+
+
+
+
     render() {
+        var myCookie = Cookie;
+        if(!myCookie.exists()){
+          this.state.status = "You are LoggedIn"
+        } else {
+          this.state.status = "Please, login"
+        }
         return (
             <div className="ui-header">
                 <a className="logo" href="#logo">
@@ -25,7 +39,13 @@ class NavBar extends React.Component {
                 <a className="home" href="/#home">Home</a>
                 <a className="profile" href="/#profile">Profile</a>
                 <input href="#search" className="search-bar" type="text" placeholder="Search Movies and TV..."></input>
+                {this.state.show ? <div onClick={this.closeModalHandler} className="back-drop"></div> : null }
+                <button className="open-modal-btn" onClick={this.showModal}>{this.state.status}</button>
 
+                <Modal className="modal" show={this.state.show} close={this.hideModal}>
+                  <p> {this.state.status}</p>
+                  <p> Logout stuff here </p>
+                </Modal>
             </div>
         )
     }
