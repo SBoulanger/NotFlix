@@ -1,7 +1,7 @@
 //import firebase, { app } from 'firebase';
 import app from 'firebase/app';
 import 'firebase/auth';
-import 'firebase/firebase-firestore';
+import firebase from 'firebase/firebase-firestore';
 
 const config = {
     apiKey: "AIzaSyALgvUe1Jt7QexcxJq_8BlMH0gQQxM1UVI",
@@ -11,11 +11,11 @@ const config = {
     storageBucket: "notflix-7ab12.appspot.com",
     messagingSenderId: "686596230656"
 };
-//const fire = firebase.initializeApp(config);
+const fire = app.initializeApp(config);
 
-//export default fire;
+export default fire;
 
-class Firebase {
+/**class Firebase {
     constructor() {
         app.initializeApp(config);
         this.auth = app.auth();
@@ -39,4 +39,4 @@ class Firebase {
 }
 
 export default new Firebase();
-
+*/

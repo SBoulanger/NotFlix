@@ -1,9 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
+import '../index.css';
 import HistoryProfile from './History_Profile';
-import ActionBar from './Action_Bar';
+import ActionBar from '../components/Action_Bar';
 import HistoryDisplay from './History_Display';
+import NavBar from '../components/Action_Bar';
 
 
 class History_Page extends React.Component {
@@ -12,7 +12,8 @@ class History_Page extends React.Component {
 		return (
 			<div>
 				<ActionBar />
-				<HistoryProfile /> 
+				<NavBar />
+				<HistoryProfile />
 				<HistoryDisplay />
 			</div>
 		)

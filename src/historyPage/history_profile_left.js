@@ -1,6 +1,6 @@
 import React from 'react';
-import firebase from './Firestore'
-class History_Profile_Left extends React.Component {
+import firebase from '../libraries/Firestore'
+class HistoryProfileLeft extends React.Component {
   constructor(props) {
     super(props);
 
@@ -36,4 +36,4 @@ class History_Profile_Left extends React.Component {
   }
 }
 
-export default History_Profile_Left
+export default HistoryProfileLeft

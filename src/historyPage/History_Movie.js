@@ -1,7 +1,7 @@
 import React from 'react';
-import firebase from './Firestore';
+import firebase from '../libraries/Firestore';
 
-class History_Movie extends React.Component {
+class HistoryMovie extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -17,7 +17,7 @@ class History_Movie extends React.Component {
 	// 	firebase.firestore().collection('histories')
 	// 	.doc('P3Fb8A9YaxaLcobOGejl')
 	// 	.get()
-	// 	
+	//
 	// }
 
 	//WIP
@@ -30,4 +30,4 @@ class History_Movie extends React.Component {
 	}
 }
 
-export default History_Movie
+export default HistoryMovie

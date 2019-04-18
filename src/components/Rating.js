@@ -14,7 +14,7 @@ class Rating extends React.Component {
 
    render() {
       return (
-      <img src={require('./imgs/examplerating.png')} alt="Logo" style={styles}/>
+      <img src={require('../imgs/examplerating.png')} alt="Logo" style={styles}/>
 
       );
    }
