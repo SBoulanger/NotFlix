@@ -6,7 +6,7 @@ class History_Profile_Right extends React.Component {
       <div className="profile">
         <button>History</button>
         <br />
-        <button>My Favorits</button>
+        <button>My Favorites</button>
         <br />
         <button>My Friends</button>
         <br />

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import fire from "./Firestore";
+import fire from "./libraries/Firestore";
 
 class App extends React.Component {
   constructor() {
@@ -26,7 +26,7 @@ class App extends React.Component {
       const userRef = db.collection("users").add({
         username: this.state.username,
         email: this.state.email
-      });  
+      });
       this.setState({
         username: "",
         email: ""
