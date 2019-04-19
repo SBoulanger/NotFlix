@@ -7,7 +7,9 @@ import NewSignUp from './NewSignUp.js';
 import firebase from '../libraries/Firestore'
 import LoginButton from './LoginButton.js';
 import SignupButton from './SignupButton.js';
-import SignInUpTextBox from './Sign_in_up_textbox.js'
+import SignInUpTextBox from './Sign_in_up_textbox.js';
+import History_Page from '../historyPage/History_Page';
+import Cookie from '../libraries/Cookie';
 
 class SignIn extends Component {
 
@@ -15,23 +17,43 @@ class SignIn extends Component {
       super();
       this.state = {
          email: '',
-         password:''
+         password:'',
+         isLoggedin: false,
+         emailMessage: '',
+         passwordMessage: ''
       }
       this.toSignUp = this.toSignUp.bind(this);
       this.LogIn = this.LogIn.bind(this);
       this.updateInput = this.updateInput.bind(this);
    }
 
-   /*INCOMPLETE
-   1) Query Firestore for given email and password
-   2) If exist generate cookie and direct to user's home page
-   3) If doesn't exist, warn user.
+   /*COMPLETE
+   1) Authenticate via Firestore with given email and password
+   2) If doesn't exist, warn user.
    */
    LogIn(){
-      console.log('Authenticate users here');
       const email = this.state.email;
       const password = this.state.password;
-      firebase.userLogin(email, password)
+      if (password === ''){
+         this.setState({ passwordMessage: "Please type in your password"})
+      }
+      if (email === ''){
+         this.setState({ emailMessage: "Please type in your email address"})
+      }
+      if (password!== '' && email !==''){
+         firebase.userLogin(email,password).then(success => {
+            if(success) {this.setState({isLoggedin:true}) 
+         }
+      }).catch(error => {
+            this.setState({passwordMessage:"Please check your password"}) 
+            this.setState({emailMessage: "Please check your email address"})
+         })
+   }
+    
+   Agree(){
+      //Create cookie and redirect to history page
+      Cookie.create(firebase.auth.currentUser.uid);
+      ReactDOM.render(<History_Page/>, document.getElementById('root'));
    }
 
    /*WORKING: Rerenders page to sign up page for new users*/
@@ -39,15 +61,11 @@ class SignIn extends Component {
       ReactDOM.render(<NewSignUp/>,document.getElementById('root'));
    }
 
-   /* NOT WORKING: Intended to update state to whatever is in InputTextBox */
+   /*WORKING: Intended to update state to whatever is in InputTextBox */
    updateInput = e => {
       this.setState({
          [e.target.name]: e.target.value
       });
-      /*To check what is happening*/
-      console.log('email');
-      console.log(this.state.email);
-      console.log(e.target.value);
    }
 
    render() {
