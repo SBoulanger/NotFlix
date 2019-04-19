@@ -7,20 +7,25 @@ import './Sign_in_up.css';
 import Shooting from '../imgs/Shooting.png';
 import LoginButton from './LoginButton.js';
 import SignInUpTextBox from './Sign_in_up_textbox.js'
+import Cookie from '../libraries/Cookie';
 
 class NewSignUp extends Component {
 
    constructor() {
       super();
       this.state = {
-         username: '',
+         user: '',
          email: '',
          password:'',
-         confirmation:'Hi',
-         username:''
+         confirmationPassword:'',
+         isCreated: false,
+         emailMessage: '',
+         userMessage: '',
+         passwordMessage: ''
       }
       this.updateInput = this.updateInput.bind(this);
       this.addUser = this.addUser.bind(this);
+      this.Agree = this.Agree.bind(this);
    }
 
    /* Re-renders page using SignIn.js component */
@@ -28,70 +33,80 @@ class NewSignUp extends Component {
       ReactDOM.render(<SignIn/>, document.getElementById('root'));
    }
 
-   /* WORKING: Intended to update state to whatever is in InputTextBox */
+   /* COMPLEETE: Update state to whatever is in InputTextBox */
    updateInput = e => {
       this.setState({
          [e.target.name]: e.target.value
       });
-      /*To check what is happening*/
-      console.log('email');
-      console.log(this.state.email);
-      console.log(e.target.value);
    }
 
-   /* INCOMPLETE
-   Intended actions:
-      1) make new document in Firestore with new credentials - WORKING
+   /* COMPLETE
+      1) make new document in Firestore with new credentials 
       2) generate cookie
       3) redirect to user's home page
    */
    addUser = e => {
       e.preventDefault();
-      /*INCOMPLETE: Add check so that password and confirmation states are same string.
-      If password == confirmation, proceed below. Else, show user that there is a mistake
-      or a user with those credentials doesn't exist.
-      */
-      // const db = firebase.firestore();
-      // db.settings({ timestampsInSnapshots: true });
-      // const userRef = db.collection("Users").doc(); /* makes new doc in Firestore with automatic ID*/
-      // const ID = userRef.id; /* automatic ID stored as string in ID */
-      // userRef.set({
-      //    autoID : ID,  /* WORKING: able to get autoID and store as string */
-      //    email: this.state.email, /*NOT WORKING*/
-      //    password: this.state.password /*NOT WORKING*/
-      // });
-
-      //*-------------------------------------------------------------------
-      //User needs to be put inside the Authentication for the login purpose
-      const username = this.state.username;
+      const name = this.state.user;
       const email = this.state.email;
       const password = this.state.password;
-      firebase.createUser(username, email, password);
-
-
-      /*INCOMPLETE: Generate cookie with auto-ID as credentials. Rerender using cookie to
-      user home page.*/
+      const confirmPassword = this.state.confirmPassword;
+      
+      //Clear out any existing cookies on website
+      if (Cookie.exists()) {
+         Cookie.destroy();
+      }
+      
+      /*COMPLETE: Check so that password and confirmation states are same string.
+      If password == confirmation, proceed below. Else, show user that there is a mistake
+      or a user with those credentials doesn't exist.*/
+      if (name === ''){
+         this.setState({ userMessage: "Please type in your username"})
+      }
+      if (password === ''){
+         this.setState({ passwordMessage: "Please type in your password"})
+      }
+      if (email === '') {
+         this.setState({ emailMessage: "Please type in your email address"})
+      }
+      if (password !== confirmPassword){
+         this.setState({ passwordMessage: "Your confirmation does not match your password"})
+      }
+      else {
+         if (password !== '' && email !== '' && name !== ''){
+            firebase.createUser(name,email,password).then(sucess =>{
+               //if successful
+               this.setState({ isCreated: true,
+                              passwordMessage: "", 
+                              emailMessage: "",
+                              userMessage:""});
+                              
+            })
+            .catch(error => {
+               this.setState({ userMessage: ""})
+               this.setState({ passwordMessage: "Please check your password"})
+               this.setState({ emailMessage: "Please check your email address"})
+            })
+         }
+      }
+   }
+   
+   // COMPLETE: Make cookie then redirect to user's history page.
+   Agree = e => {
+      e.preventDefault();
+      const name = this.state.user;
+      firebase.db.collection('users').doc(firebase.auth.currentUser.uid).set({
+         autoID: firebase.auth.currentUser.uid,
+         username: name,
+         imageURL: "",
+         bio: ""
+      })
+      Cookie.create(firebase.auth.currentUser.uid);
+      ReactDOM.render(<History_Page/>, document.getElementyById('root'));
    }
 
-   /*Initial render*/
-   render() {
-      // return (
-      //    <div className = "NewSignUp">
-      //       <header className = "NewSignUp-header">
-      //          <img src = {Notflix} className = "Notflix-logo" style = {{width: '30%'}} />
-      //       <form onSubmit = {this.addUser}>
-      //         {
-      //          <p> <InputTextBox promptText="Email here" type = "text" id = "EmailBox" name = "email" onchange = {this.updateInput} value = {this.state.email} /> </p>
-      //          <p> <InputTextBox promptText="Password here" type = "password" id = "PasswordBox" name = "password" onchange = {this.updateInput} value = {this.state.password} /> </p>
-      //          <p> <InputTextBox promptText="Confirm password" type = "password" id = "ConfirmPassword" / name = "confirmation" onchange = {this.updateInput} value = {this.state.confirmation}> </p>
-      //          <p> <Button type="Submit" text="Sign Up"/> </p>
-      //           <p style = {{cursor: 'pointer'}} onClick {this.toSignIn}> Already a member? </p>
-      //         }
-      //        </form>
-      //       </header>
-      //     </div>
-      // );
 
+   render() {
       return (
          <div className = "NewSignUp">
             <div className = "Corner-column">
