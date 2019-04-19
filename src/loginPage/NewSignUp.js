@@ -6,8 +6,9 @@ import SignIn from './SignIn.js';
 import './Sign_in_up.css';
 import Shooting from '../imgs/Shooting.png';
 import LoginButton from './LoginButton.js';
-import SignInUpTextBox from './Sign_in_up_textbox.js'
+import SignInUpTextBox from './Sign_in_up_textbox.js';
 import Cookie from '../libraries/Cookie';
+import History_Page from '../historyPage/History_Page';
 
 class NewSignUp extends Component {
 
