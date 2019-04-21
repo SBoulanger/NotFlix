@@ -102,6 +102,9 @@ class NewSignUp extends Component {
          imageURL: "",
          bio: ""
       })
+      firebase.db.collection('histories').doc(firebase.auth.currentUser.uid).set({
+         Movies: []
+      })
       Cookie.create(firebase.auth.currentUser.uid);
       ReactDOM.render(<History_Page/>, document.getElementyById('root'));
    }

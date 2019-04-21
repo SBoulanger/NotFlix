@@ -77,6 +77,15 @@
         padding-bottom: 20px;
 }
 
+.Error-label{
+        font-family: "Helvetica Neue";
+        font-size: 15px;
+        color: red;
+        font-weight: bold;
+        text-align: left;
+        padding-top: 7px;
+}
+
 .Password-label {
         font-family: "Helvetica Neue";
         font-weight: bold;
@@ -95,6 +104,13 @@
         padding-bottom: 40px;
         padding-left: 100px;
         padding-right: 100px;
+}
+
+.Agreelabel {
+        padding-top: 20px;
+        text-align: center;
+        font-weight: bold;
+        padding-bottom: 150px;
 }
 
 /* .SignIn-header{
