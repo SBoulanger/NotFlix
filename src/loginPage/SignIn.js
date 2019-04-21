@@ -48,6 +48,7 @@ class SignIn extends Component {
             this.setState({passwordMessage:"Please check your password"}) 
             this.setState({emailMessage: "Please check your email address"})
          })
+      }
    }
     
    Agree(){
