@@ -1,0 +1,17 @@
+.InputTextBox{
+        
+}
+
+input {
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 2px solid lightblue;
+        border-radius: 4px;
+        resize: none;
+}
+
+input:focus{
+        outline: none;
+        border: 2px solid darkblue;
+}

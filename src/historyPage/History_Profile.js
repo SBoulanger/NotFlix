@@ -2,7 +2,7 @@ import React from 'react';
 import HistoryProfileLeft from './history_profile_left';
 import HistoryProfileSocialBox from './History_Profile_SocialBox';
 import HistoryProfileRight from './History_Profile_Right';
-import fire from './Firestore';
+import fire from '../libraries/Firestore';
 
 const style = {
   display: 'flex',

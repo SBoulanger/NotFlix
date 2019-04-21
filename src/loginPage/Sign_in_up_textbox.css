@@ -1,0 +1,11 @@
+input {
+    background-color: #2D2D2D;
+    border: 1.5px solid white;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    width: 100%;
+    font-family: "Helvetica Neue";
+    font-size: 15px;
+    color: white;
+}
