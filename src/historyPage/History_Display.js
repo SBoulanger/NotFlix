@@ -1,7 +1,7 @@
 import React from 'react';
 import HistoryMovie from './History_Movie';
 
-class History_Display extends React.Component {
+class HistoryDisplay extends React.Component {
 
 
 	render(){
@@ -13,4 +13,4 @@ class History_Display extends React.Component {
 	}
 }
 
-export default History_Display
+export default HistoryDisplay
