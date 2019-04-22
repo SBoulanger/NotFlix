@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import './NavBar.css';
 import NotflixLogo from '../imgs/Notflix.png';
 import Cookie from '../libraries/Cookie';
 import Modal from './Modal'
 import SignIn from '../loginPage/SignIn'
-import ReactDOM from 'react-dom';
 import HistoryPage from '../historyPage/History_Page'
 import MoviePage from '../moviePage/Movie_Page'
 
@@ -39,6 +39,14 @@ class NavBar extends React.Component {
     LoadMovie(){
       ReactDOM.render(<MoviePage/>, document.getElementById('root'));
     }
+    CheckProfile(){
+        var myCookie = Cookie;
+        if (myCookie.exists()) this.LoadProfile();
+    }
+    CheckMovie(){
+        var myCookie = Cookie;
+        if (myCookie.exists()) this.LoadMovie();
+    }
     render() {
         var myCookie = Cookie;
         if(myCookie.exists()){
@@ -60,36 +68,15 @@ class NavBar extends React.Component {
                 <a className="logo" href="#logo">
                     <img className="logo" src={NotflixLogo} height={70} alt="this is wack"/>
                 </a>
-
-                <a className="home" href="/#home">Home</a>
-                <a className="profile" href="/#profile">Profile</a>
+                <button onClick={this.CheckProfile} id='profile_button'> Profile </button>
+                <button onClick={this.CheckMovie} id ='movie_button'> Movies </button>
                 <input href="#search" className="search-bar" type="text" placeholder="Search Movies and TV..."></input>
-
-
                 {this.state.status}
             </div>
+
         )
     }
 
-    render_wip() {
-        return (
-            <div>
-                <ul id="stats">
-                    <li>
-                        <a href="#logo">
-                            <span className="listHeader">
-                                <img src={NotflixLogo} height={50}/>
-                            </span>
-                        </a>
-                    </li>
-                    <li><a href="#home"><span className="listHeader">67</span></a></li>
-                    <li><a href="#blank"><span className="listHeader">67</span></a></li>
-                    <li><a href="#search"><span className="listHeader">67</span></a></li>
-                    <li><a href="#profile"><span className="listHeader">67</span></a></li>
-                </ul>
-            </div>
-        )
-    }
 }
 
 export default NavBar;

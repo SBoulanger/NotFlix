@@ -11,7 +11,6 @@ class HistoryMovie extends React.Component {
 		};
 	}
 
-
 	// TO-DO
 	// componentDidMount() {
 	// 	firebase.firestore().collection('histories')
@@ -23,7 +22,7 @@ class HistoryMovie extends React.Component {
 	//WIP
 	render() {
 		return (
-			<div className="history_movie" class="flex-container">
+			<div className="history_movie" className="flex-container">
 				<img src="https://m.media-amazon.com/images/M/MV5BMTYyNDg0Njc2Nl5BMl5BanBnXkFtZTYwMDc3NzQ3._V1_UX182_CR0,0,182,268_AL_.jpg" alt="Stuart Little"/>
 			</div>
 		);
