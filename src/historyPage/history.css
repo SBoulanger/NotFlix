@@ -1,0 +1,59 @@
+.profile {
+	color: black;
+	display: flex;
+	align-items: center;
+	padding: 20px;
+	background: #eee;
+	justify-content: space-between;
+}
+
+.socialRight {
+	display: flex;
+	flex-direction: column;
+}
+
+.historyBar {
+	margin-top: 1em;
+	padding-left: 0.5em;
+	font-size: 4em;
+}
+
+.historyDisplay {
+	font-family: Calibri, sans-serif;
+	display: grid;
+	grid-template-columns: 25%  [box-line-1] 50% [box-line-2] 25%; 
+	margin: 1em 2em;
+}
+
+.historyContentBox {
+	max-height: 4em;
+	background-color: rgb(105,105,105);
+	padding: 0.5em;
+	margin-bottom: 1em;
+	outline: 2px solid black;
+	grid-column-start: box-line-1;
+	grid-column-end: box-line-2;
+	display: flex;
+	justify-content: left;
+}
+
+.historyContentBox:hover {
+	outline: 2px solid red;
+}
+
+.historyContentBox img {
+	
+}
+
+.contentInfo {
+	margin-left: 0.4em;
+}
+
+#title {
+	font-size: 2.3vw;
+	margin: 0em;
+}
+
+#description {
+	font-size: 1vw;
+}
