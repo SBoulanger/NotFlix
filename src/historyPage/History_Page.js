@@ -12,7 +12,6 @@ class History_Page extends React.Component {
 		return (
 			<div>
 				<ActionBar />
-				<NavBar />
 				<HistoryProfile />
 				<HistoryDisplay />
 			</div>

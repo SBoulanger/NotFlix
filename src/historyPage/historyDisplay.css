@@ -1,0 +1,32 @@
+.historyDisplay {
+	display: grid;
+	grid-template-columns: 25%  [box-line-1] 50% [box-line-2] 25%; 
+	margin: 5em 2em;
+}
+
+.historyContentBox {
+	padding: 2em;
+	outline: 2px solid blue;
+	grid-column-start: box-line-1;
+	grid-column-end: box-line-2;
+	display: grid;
+	grid-template-columns: 25% [info1] 75% [info2];
+}
+
+
+.contentInfo {
+	display: grid;
+	grid-template-rows: 15% 85%;
+}
+
+#title {
+	grid-column-start: 1;
+	grid-column-end: 2;
+	grid-row-start: 1;
+	grid-row-end: 2; 
+}
+
+#description {
+	grid-row-start: 2;
+	grid-row-end: 3;
+}
