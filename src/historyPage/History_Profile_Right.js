@@ -1,7 +1,17 @@
 import React from 'react'
+import SignIn from '../loginPage/SignIn'
+import ReactDOM from 'react-dom';
+import Cookie from '../libraries/Cookie';
 
 class History_Profile_Right extends React.Component {
+  Logout(){
+    console.log('loging out');
+    var myCookie = Cookie;
+    myCookie.destroy();
+    ReactDOM.render(<SignIn/>, document.getElementById('root'));
+  }
   render() {
+    console.log('rendering profile');
     return (
       <div className="profile">
         <button>History</button>
@@ -10,7 +20,7 @@ class History_Profile_Right extends React.Component {
         <br />
         <button>My Friends</button>
         <br />
-        <button>Logout</button>
+        <button onClick={this.Logout} id='logoutbutton' >Logout</button>
       </div>
     );
   }
