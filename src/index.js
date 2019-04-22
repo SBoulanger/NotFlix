@@ -6,6 +6,7 @@ import HistoryPage from './historyPage/History_Page';
 import * as serviceWorker from './libraries/serviceWorker';
 import MoviePage from "./moviePage/Movie_Page";
 import SignIn from "./loginPage/SignIn";
+import NavBar from "./components/NavBar"
 
 
 //You can change this render function to check on your components
