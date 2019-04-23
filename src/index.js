@@ -6,12 +6,13 @@ import HistoryPage from './historyPage/History_Page';
 import * as serviceWorker from './libraries/serviceWorker';
 import MoviePage from "./moviePage/Movie_Page";
 import SignIn from "./loginPage/SignIn";
+import SearchBar from "./SearchBar/Search_Bar";
 
 
 //You can change this render function to check on your components
 //Change HistoryProfile to YourAppFile
 
-ReactDOM.render(<HistoryPage />, document.getElementById('root'));
+ReactDOM.render(<SearchBar />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
