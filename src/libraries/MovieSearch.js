@@ -1,5 +1,60 @@
 import firebase from "./Firestore";
+
 /*
+    Movie search class
+    @params: keyword, searchtype, orderby, size
+    keyword: a movie or genre that you are searching for
+    searchtype: specifies if you are searching for a movie or a genre
+    orderby: orders the query based on the request (i.e highest rated, etc...)
+    size: maximum size of the query that you can pull
+    
+    This implementation goes by the logic that the search bar will look like
+    [   keyword   ][searchtype]
+    similiar to IMDb's search bar
+
+    ** sorting will be added shortly in the future **
+*/
+class MovieSearch {
+    constructor(keyword = "", searchtype = "", orderby = "", size = 1) {
+        console.log("Searching for %s: %s", searchtype, keyword);
+        if(searchtype.toLowerCase() == "title") {
+            return searchTitle(keyword, orderby, size);
+        }
+        else if(searchtype.toLowerCase() == "genre") {
+            return searchGenre(keyword, orderby, size);
+        }
+        else
+            return "invalid";
+    }
+}
+
+/* 
+    search for a title
+    will fetch titles that match with the string starting from substring(0)
+    i.e: "John Wick" will produce "John Wick" and "John Wick 2" as hits
+    Case sensitive, user input will need to be altered to circumvent that
+*/
+function searchTitle(keyword, orderby, size) {
+    var moviesRef = firebase.firestore().collection('movies');
+    return moviesRef.orderBy('title').startAt(keyword).endAt(keyword+"\uf8ff");
+}
+
+/*
+    search for a genre
+    will fetch titles that include a certain genre
+    ** will be changed to allow multiple genres to be searched for in the future **
+    ** will also limit the possible keywords to prevent searching for movie titles **
+*/
+function searchGenre(keyword, orderby, size) {
+    var moviesRef = firebase.firestore().collection('movies');
+    keyword = keyword.charAt(0).toUpperCase() + keyword.slice(1).toLowerCase();
+    return moviesRef.where('genres', "array-contains", keyword).limit(size);
+}
+
+export default MovieSearch
+
+
+/* Timothy's code
     Effectively a way to simplify using queries and for easy documentation.                     Genres:                                     Methods:
     To use, start off by creating a new MovieSearch with your choice of parameters.             Action      Family      Romance             highestRating - Orders films by their
     Check to the right for the list of available parameters, method selects the                 Adventure   Fantasy     Science Fiction     average vote score going from highest to
@@ -22,12 +77,12 @@ import firebase from "./Firestore";
     Documentation found here: https://firebase.google.com/docs/reference/node/firebase.firestore.Query
     Further documentation of relevant files are QuerySnapshot and QueryDocumentSnapshot both on the
     same page on the left column.
- */
+
 class MovieSearch{
-    constructor(method = "", size = 5, genre = "none") {
+    constructor(orderBy = "", size = 5, genre = "none") {
         var moviesRef = firebase.firestore().collection('movies')
         if(genre == "none"){
-            switch(method.toLowerCase()) {
+            switch(orderBy.toLowerCase()) {
                 case "highestRating":
                     return moviesRef.orderBy('vote_average', 'desc').limit(size)
                     break;
@@ -40,7 +95,7 @@ class MovieSearch{
         }
         else{
             genre = genre.charAt(0).toUpperCase() + genre.slice(1).toLowerCase();
-            switch(method.toLowerCase()) {
+            switch(orderBy.toLowerCase()) {
                 case "highestRating":
                     return moviesRef.where('genres', "array-contains", genre)
                         .orderBy('vote_average', 'desc').limit(size)
@@ -54,9 +109,8 @@ class MovieSearch{
             }
         }
     }
-}
-
-export default MovieSearch
+} 
+*/
 
 /*
     Example usage of program
