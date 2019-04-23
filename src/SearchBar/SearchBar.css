@@ -1,0 +1,34 @@
+.ui-header.search-bar {
+    color: white;
+    height: 30px;
+    min-width: 300px;
+
+
+}
+
+.ui-header a {
+    color: white;
+}
+
+.ui-header a:hover {
+    background-color: #515151;
+    color: #ffffff;
+}
+
+.ui-header a.active {
+    color: white;
+}
+
+.search-bar {
+    display: inline-block;
+    height: 30px;
+    margin-left: 200px;
+    min-width: 200px;
+    padding-left: 100px;
+}
+
+.home {
+    margin-left: 15px;
+    margin-right: 15px;
+    align-items: center;
+}
