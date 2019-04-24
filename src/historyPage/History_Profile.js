@@ -5,13 +5,6 @@ import HistoryProfileRight from './History_Profile_Right';
 import fire from '../libraries/Firestore';
 import './history.css'
 
-// const style = {
-//   display: 'flex',
-//   alignItems: 'center',
-//   padding: "20px",
-//   background: "#eee"
-// };
-
 class History_Profile extends React.Component {
 
   render() {
