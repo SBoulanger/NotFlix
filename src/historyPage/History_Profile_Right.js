@@ -17,7 +17,7 @@ class HistoryProfileRight extends React.Component {
   render() {
     console.log('rendering profile');
     return (
-      <div className="profile">
+      <div className="socialRight">
         <button>History</button>
         <br />
         <button>My Favorites</button>
