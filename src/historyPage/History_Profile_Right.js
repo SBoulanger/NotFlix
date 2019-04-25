@@ -4,11 +4,15 @@ import { withRouter } from 'react-router-dom';
 import Cookie from '../libraries/Cookie';
 
 class HistoryProfileRight extends React.Component {
+  constructor(props) {
+    super(props);
+    this.Logout = this.Logout.bind(this);
+  }
   Logout(){
     console.log('loging out');
     var myCookie = Cookie;
     myCookie.destroy();
-    this.props.router.push('/');
+    this.props.history.push('/');
   }
   render() {
     console.log('rendering profile');
