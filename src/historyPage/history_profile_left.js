@@ -13,13 +13,11 @@ class HistoryProfileLeft extends React.Component {
     };
   }
   componentDidMount() {
-   firebase.firestore().collection('users')
+   firebase.db.collection('users')
     .doc('P3Fb8A9YaxaLcobOGejl')
     .get()
     .then(doc => this.setState({
       userName: doc.data().username,
-      firstName: doc.data().FirstName,
-      lastName: doc.data().LastName,
       bio: doc.data().Biography}));
   }
 

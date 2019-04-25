@@ -11,11 +11,11 @@ const config = {
     storageBucket: "notflix-7ab12.appspot.com",
     messagingSenderId: "686596230656"
 };
-const fire = app.initializeApp(config);
+//const fire = app.initializeApp(config);
 
-export default fire;
+//export default fire;
 
-/**class Firebase {
+class Firebase {
     constructor() {
         app.initializeApp(config);
         this.auth = app.auth();
@@ -39,4 +39,3 @@ export default fire;
 }
 
 export default new Firebase();
-*/
