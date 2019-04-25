@@ -11,7 +11,7 @@ class Movie_Page_Text extends React.Component {
         };
     }
     componentDidMount() {
-        var movieRef = firebase.firestore().collection('movies').doc(this.props.movieID);
+        var movieRef = firebase.db.collection('movies').doc(this.props.movieID);
         var getMovie = movieRef.get()
             .then(doc => {
                 if (doc.exists) {

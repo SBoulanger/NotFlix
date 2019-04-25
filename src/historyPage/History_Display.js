@@ -3,7 +3,7 @@ import HistoryMovie from './History_Movie';
 import firebase from '../libraries/Firestore';
 import './historyDisplay.css';
 
-class History_Display extends React.Component {
+class HistoryDisplay extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -50,4 +50,4 @@ class History_Display extends React.Component {
 	}
 }
 
-export default History_Display
+export default HistoryDisplay
