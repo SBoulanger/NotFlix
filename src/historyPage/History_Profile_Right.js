@@ -3,7 +3,7 @@ import React from 'react'
 class History_Profile_Right extends React.Component {
   render() {
     return (
-      <div className="profile">
+      <div className="socialRight">
         <button>History</button>
         <br />
         <button>My Favorites</button>
