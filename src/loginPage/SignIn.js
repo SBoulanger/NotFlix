@@ -8,9 +8,9 @@ import firebase from '../libraries/Firestore'
 import LoginButton from './LoginButton.js';
 import SignupButton from './SignupButton.js';
 import SignInUpTextBox from './Sign_in_up_textbox.js';
-import History_Page from '../historyPage/History_Page';
 import Cookie from '../libraries/Cookie';
 import NavBar from '../components/NavBar';
+import { withRouter } from 'react-router-dom';
 
 class SignIn extends Component {
 
@@ -25,6 +25,7 @@ class SignIn extends Component {
       }
       this.toSignUp = this.toSignUp.bind(this);
       this.LogIn = this.LogIn.bind(this);
+      this.Agree = this.Agree.bind(this);
       this.updateInput = this.updateInput.bind(this);
    }
 
@@ -56,7 +57,7 @@ class SignIn extends Component {
 
    Agree(){
       Cookie.create(firebase.auth.currentUser.uid);
-      ReactDOM.render(<History_Page/>, document.getElementById('root'));
+      this.props.history.push('/history');
    }
 
    /*WORKING: Rerenders page to sign up page for new users*/
@@ -118,4 +119,4 @@ class SignIn extends Component {
    }
 }
 
-export default SignIn;
+export default withRouter(SignIn);

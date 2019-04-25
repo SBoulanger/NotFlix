@@ -1,14 +1,18 @@
 import React from 'react'
-import SignIn from '../loginPage/SignIn'
-import ReactDOM from 'react-dom';
+import SignIn from '../loginPage/SignIn';
+import { withRouter } from 'react-router-dom';
 import Cookie from '../libraries/Cookie';
 
-class History_Profile_Right extends React.Component {
+class HistoryProfileRight extends React.Component {
+  constructor(props) {
+    super(props);
+    this.Logout = this.Logout.bind(this);
+  }
   Logout(){
     console.log('loging out');
     var myCookie = Cookie;
     myCookie.destroy();
-    ReactDOM.render(<SignIn/>, document.getElementById('root'));
+    this.props.history.push('/');
   }
   render() {
     console.log('rendering profile');
@@ -26,4 +30,4 @@ class History_Profile_Right extends React.Component {
   }
 }
 
-export default History_Profile_Right
+export default withRouter(HistoryProfileRight)

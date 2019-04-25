@@ -1,23 +1,27 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { withRouter } from 'react-router-dom';
 import './NavBar.css';
 import NotflixLogo from '../imgs/Notflix.png';
 import Cookie from '../libraries/Cookie';
 import Modal from './Modal'
 import SignIn from '../loginPage/SignIn'
 import HistoryPage from '../historyPage/History_Page'
-import MoviePage from '../moviePage/Movie_Page'
+import MainMovie from '../moviePage/Main_Movie'
 
 class NavBar extends React.Component {
 
     constructor(props) {
         super(props);
-
         // How to create State variables
         this.state = {
             status : "",
             show : false
         };
+        this.Login = this.Login.bind(this);
+        this.Logout = this.Logout.bind(this);
+        this.CheckMovie = this.CheckMovie.bind(this);
+        this.CheckProfile = this.CheckProfile.bind(this);
     }
 
     //functions to hide/show the modal
@@ -25,19 +29,22 @@ class NavBar extends React.Component {
     hideModal = () => {this.setState({show: false})}
 
     Login(){
-      ReactDOM.render(<SignIn/>, document.getElementById('root'));
+      this.props.history.push('/')
     }
     Logout(){
       console.log('loging out');
       var myCookie = Cookie;
       myCookie.destroy();
-      ReactDOM.render(<SignIn/>, document.getElementById('root'));
+      this.props.history.push('/');
+
     }
     LoadProfile(){
-      ReactDOM.render(<HistoryPage/>, document.getElementById('root'));
+      this.props.history.push('/history');
+
     }
     LoadMovie(){
-      ReactDOM.render(<MoviePage/>, document.getElementById('root'));
+      this.props.history.push('/movie');
+
     }
     CheckProfile(){
         var myCookie = Cookie;
@@ -45,6 +52,7 @@ class NavBar extends React.Component {
     }
     CheckMovie(){
         var myCookie = Cookie;
+        console.log(myCookie.exists());
         if (myCookie.exists()) this.LoadMovie();
     }
     render() {
@@ -79,4 +87,4 @@ class NavBar extends React.Component {
 
 }
 
-export default NavBar;
+export default withRouter(NavBar);
