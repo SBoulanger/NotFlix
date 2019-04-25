@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
+
 import ReactDOM from 'react-dom';
 import { withRouter } from 'react-router-dom';
 import './NavBar.css';
 import NotflixLogo from '../imgs/Notflix.png';
 import Cookie from '../libraries/Cookie';
 import Modal from './Modal'
-import SignIn from '../loginPage/SignIn'
-import HistoryPage from '../historyPage/History_Page'
-import MainMovie from '../moviePage/Main_Movie'
+
+
 
 class NavBar extends React.Component {
 
@@ -32,7 +32,7 @@ class NavBar extends React.Component {
       this.props.history.push('/')
     }
     Logout(){
-      console.log('loging out');
+      console.log('logging out');
       var myCookie = Cookie;
       myCookie.destroy();
       this.props.history.push('/');
@@ -70,21 +70,6 @@ class NavBar extends React.Component {
                          </div>
         } else {
           this.state.status = <button onClick={this.Login} id='loginbutton' >Login</button>
-        }
-        return (
-            <div className="ui-header">
-                <a className="logo" href="#logo">
-                    <img className="logo" src={NotflixLogo} height={70} alt="this is wack"/>
-                </a>
-                <button onClick={this.CheckProfile} id='profile_button'> Profile </button>
-                <button onClick={this.CheckMovie} id ='movie_button'> Movies </button>
-                <input href="#search" className="search-bar" type="text" placeholder="Search Movies and TV..."></input>
-                {this.state.status}
-            </div>
-
-        )
-    }
-
 }
 
 export default withRouter(NavBar);

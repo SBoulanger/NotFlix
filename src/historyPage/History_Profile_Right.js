@@ -1,21 +1,7 @@
 import React from 'react'
-import SignIn from '../loginPage/SignIn';
-import { withRouter } from 'react-router-dom';
-import Cookie from '../libraries/Cookie';
 
-class HistoryProfileRight extends React.Component {
-  constructor(props) {
-    super(props);
-    this.Logout = this.Logout.bind(this);
-  }
-  Logout(){
-    console.log('loging out');
-    var myCookie = Cookie;
-    myCookie.destroy();
-    this.props.history.push('/');
-  }
+class History_Profile_Right extends React.Component {
   render() {
-    console.log('rendering profile');
     return (
       <div className="profile">
         <button>History</button>
@@ -24,10 +10,10 @@ class HistoryProfileRight extends React.Component {
         <br />
         <button>My Friends</button>
         <br />
-        <button onClick={this.Logout} id='logoutbutton' >Logout</button>
+        <button>Logout</button>
       </div>
     );
   }
 }
 
-export default withRouter(HistoryProfileRight)
+export default History_Profile_Right

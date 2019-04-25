@@ -1,5 +1,6 @@
 import React from 'react';
 import firebase from '../libraries/Firestore';
+import { withRouter } from 'react-router-dom';
 
 class HistoryMovie extends React.Component {
 	constructor(props) {
@@ -29,4 +30,4 @@ class HistoryMovie extends React.Component {
 	}
 }
 
-export default HistoryMovie
+export default withRouter(HistoryMovie)
