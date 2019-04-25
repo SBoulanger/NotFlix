@@ -10,7 +10,6 @@ import Modal from './Modal'
 
 
 class NavBar extends React.Component {
-
     constructor(props) {
         super(props);
         // How to create State variables
@@ -64,12 +63,24 @@ class NavBar extends React.Component {
                           <button className="open-modal-btn" onClick={this.showModal}>Welcome back</button>
                           <Modal className="modal" show={this.state.show} close={this.hideModal} >
                             <button onClick={this.Logout}> logout </button>
-                            <button onClick={this.LoadProfile}> Profile </button>
-                            <button onClick={this.LoadMovie}> Movies </button>
+                            <button onClick={this.CheckProfile}> Profile </button>
+                            <button onClick={this.CheckMovie}> Movies </button>
                           </Modal>
                          </div>
         } else {
           this.state.status = <button onClick={this.Login} id='loginbutton' >Login</button>
+        }
+        return (
+          <div className="ui-header">
+              <a className="logo" href="#logo">
+                  <img className="logo" src={NotflixLogo} height={70} alt="this is wack"/>
+              </a>
+              <button onClick={this.CheckProfile} id='profile_button'> Profile </button>
+             <button onClick={this.CheckMovie} id ='movie_button'> Movies </button>
+             <input href="#search" className="search-bar" type="text" placeholder="Search Movies and TV..."></input>
+             {this.state.status}
+         </div>
+      )
+    }
 }
-
 export default withRouter(NavBar);

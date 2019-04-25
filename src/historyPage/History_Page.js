@@ -14,15 +14,8 @@ class HistoryPage extends React.Component {
 		if (myCookie.exists()) {
 			return (
 			<div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 				<NavBar />
->>>>>>> be43b86baf257fc0fbcafff2efa0fc2496a76c7e
-=======
-				<NavBar />
->>>>>>> ddddb62bfb2e900bf76f4f172ae83f5bd4c8c690
-				<ActionBar />
+        <ActionBar />
 				<HistoryProfile />
 				<HistoryDisplay />
 			</div>
