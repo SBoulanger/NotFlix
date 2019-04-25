@@ -63,7 +63,7 @@ class HistoryDisplay extends React.Component {
 
 		let historyMovies = [];
 		this.state.movieHistory.forEach(movie => {
-			historyMovies.push(<HistoryMovie title={movie.title} description={movie.overview} />);
+			historyMovies.push(<HistoryMovie title={movie.title} overview={movie.overview} />);
 		});
 		return(
 
