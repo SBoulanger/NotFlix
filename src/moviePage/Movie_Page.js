@@ -11,8 +11,7 @@ class MoviePage extends React.Component{
             <div>
                 <NavBar />
                 <Action_Bar />
-                <Main_Movie movieID={this.props.movieID}/>
-
+                <Main_Movie movieID={this.props.match.params.id}/>
             </div>
         );
     }

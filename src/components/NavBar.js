@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import ReactDOM from 'react-dom';
 import { withRouter } from 'react-router-dom';
 import './NavBar.css';
 import NotflixLogo from '../imgs/Notflix.png';
@@ -42,7 +41,7 @@ class NavBar extends React.Component {
 
     }
     LoadMovie(){
-      this.props.history.push('/movie');
+      this.props.history.push('/movie/10020');
 
     }
     CheckProfile(){
