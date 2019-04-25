@@ -9,6 +9,7 @@ import LoginButton from './LoginButton.js';
 import SignInUpTextBox from './Sign_in_up_textbox.js';
 import Cookie from '../libraries/Cookie';
 import History_Page from '../historyPage/History_Page';
+import {withRouter} from 'react-router-dom';
 
 class NewSignUp extends Component {
 
@@ -31,7 +32,7 @@ class NewSignUp extends Component {
 
    /* Re-renders page using SignIn.js component */
    toSignIn(){
-      ReactDOM.render(<SignIn/>, document.getElementById('root'));
+      this.props.history.push('/')
    }
 
    /* WORKING: Intended to update state to whatever is in InputTextBox */
@@ -43,7 +44,7 @@ class NewSignUp extends Component {
 
    addUser = e => {
       e.preventDefault();
-   
+
       const name = this.state.user;
       const email = this.state.email;
       const password = this.state.password;
@@ -62,8 +63,8 @@ class NewSignUp extends Component {
       }
       if (email === '') {
          this.setState({ emailMessage: "Please type in your email address"})
-      } 
-      
+      }
+
       if (password !== confirmPassword) {
          this.setState({ passwordMessage: "Please make sure your password and confirm password match"})
       } else {
@@ -76,7 +77,7 @@ class NewSignUp extends Component {
                this.setState({ passwordMessage: "Please check your password"})
                this.setState({ emailMessage: "Please check your email address"})
             })
-         }  
+         }
       }
    }
 
@@ -95,7 +96,7 @@ class NewSignUp extends Component {
       })
 
       Cookie.create(firebase.auth.currentUser.uid);
-      ReactDOM.render(<History_Page/>, document.getElementById('root'));
+      this.props.history.push('/history')
    }
 
    /*Initial render*/
@@ -134,12 +135,12 @@ class NewSignUp extends Component {
                      <div> <SignInUpTextBox type = "password" id = "ConfirmBox" name="confirmPassword" value = {this.state.confirmPassword} onchange={this.updateInput} /> </div>
                   </div>
                   <div>
-                     <div className = "CreateBtn"> 
+                     <div className = "CreateBtn">
                      {!this.state.isCreated ? (
-                        <LoginButton  onClick={this.addUser} id ='createButton' text="Create"/> 
+                        <LoginButton  onClick={this.addUser} id ='createButton' text="Create"/>
                      ) : (
                         <LoginButton onClick={this.Agree} id ='agreebutton' text="Agree"/>
-                     )}  
+                     )}
                      </div>
                   </div>
                   {!this.state.isCreated ? (
@@ -154,7 +155,7 @@ class NewSignUp extends Component {
    }
 }
 
-export default NewSignUp;
+export default withRouter(NewSignUp);
 
 
 // firebase.db.collection('histories').doc(firebase.auth.currentUser.uid).set({

@@ -1,6 +1,7 @@
 import React from 'react';
 import firebase from '../libraries/Firestore'
 import Cookie from '../libraries/Cookie';
+import ProfilePicture from '../imgs/defaultProfile.jpg';
 
 class History_Profile_Left extends React.Component {
   constructor(props) {
@@ -41,7 +42,7 @@ class History_Profile_Left extends React.Component {
       username: doc.data().username
     }));
 
-    
+
   }
 
   render() {
@@ -49,7 +50,7 @@ class History_Profile_Left extends React.Component {
       <div>
         <h3> Hi {this.state.username}! </h3>
         <br />
-        // add image here
+        <img className="profilePicture" src={ProfilePicture} height={150} alt="Profile picture"/>
         <br />
         Your Bio: {this.state.bio}
       </div>
@@ -58,4 +59,3 @@ class History_Profile_Left extends React.Component {
 }
 
 export default History_Profile_Left
-
