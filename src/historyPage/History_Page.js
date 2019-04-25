@@ -13,10 +13,7 @@ class History_Page extends React.Component {
 		if (myCookie.exists()) {
 			return (
 			<div>
-<<<<<<< HEAD
-=======
 				<NavBar />
->>>>>>> origin/Notflix-Signinup
 				<ActionBar />
 				<HistoryProfile />
 				<HistoryDisplay />
