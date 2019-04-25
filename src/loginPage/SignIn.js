@@ -62,7 +62,7 @@ class SignIn extends Component {
 
    /*WORKING: Rerenders page to sign up page for new users*/
    toSignUp(){
-      ReactDOM.render(<NewSignUp/>, document.getElementById('root'));
+      this.props.history.push('/newUser');
    }
 
    updateInput = e => {
