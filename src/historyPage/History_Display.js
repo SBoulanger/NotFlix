@@ -8,18 +8,18 @@ class HistoryDisplay extends React.Component {
 
 	constructor(props) {
 		super(props);
-		// this.state = {
-		// 	movieHistory: []
-		// };
+		this.state = {
+			movieHistory: []
+		};
 
 		// For Testing CSS
-		this.state = {
-					movieHistory: [
-						{title: "Movie1", overview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"}, 
-						{title: "Movie2", overview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"}, 
-						{title: "Movie3", overview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"}
-					]
-				};
+		// this.state = {
+		// 			movieHistory: [
+		// 				{title: "Movie1", overview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"}, 
+		// 				{title: "Movie2", overview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"}, 
+		// 				{title: "Movie3", overview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"}
+		// 			]
+		// 		};
 	}
 
 	// NOT WORKING 
@@ -54,16 +54,39 @@ class HistoryDisplay extends React.Component {
 		// getMovies(Cookie.get()).then(movs => {
 		// 	movies = movs;
 		// 	this.setState({movieHistory: movies}, () => {this.setState({movieHistory: movies})});
-		// });	
-	
+		// });
+		var movIds = [];
+		var movies = [];
+		firebase.db.collection('histories')
+			.doc(Cookie.get())
+			.get()
+			.then(doc => {
+				var movies = [];
+				doc.data().Movies.forEach(movie => {
+					movIds.push(movie);
+					movies.push(firebase.db.doc(`/movies/${"10020"}`));
+				});
+				// movIds.forEach(function(movId) {
+				// 	firebase.db.collection('movies')
+				// 		.doc(movId)
+				// 		.get()
+				// 		.then(doc => {
+				// 			movies.push(doc.data());
+				// 		});
+				// });
+				this.setState({movieHistory: movies}, () => {console.log(this.state);});
+			});
 	}
 
 
 	render(){
-
+		console.log(this.state.movieHistory);
 		let historyMovies = [];
-		this.state.movieHistory.forEach(movie => {
+		let movs = this.state.movieHistory;
+		console.log(movs);
+		movs.forEach(movie => {
 			historyMovies.push(<HistoryMovie title={movie.title} overview={movie.overview} />);
+			console.log("Added Movie");
 		});
 		return(
 
