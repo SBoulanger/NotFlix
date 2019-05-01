@@ -30,8 +30,8 @@ body {
 }
 .mainmovierating{
   position: absolute;
-  right: 0px;
-  top: 60px;
+  right: 200px;
+  top: 115px;
 }
 .largeui {
   font-size: 3em;
@@ -44,4 +44,9 @@ body {
 
 .titleui {
   font-size: 80px;
+}
+
+.filmdisplay{
+  width: 1200px;
+  height: 300px;
 }
