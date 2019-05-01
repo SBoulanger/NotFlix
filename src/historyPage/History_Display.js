@@ -55,38 +55,35 @@ class HistoryDisplay extends React.Component {
 		// 	movies = movs;
 		// 	this.setState({movieHistory: movies}, () => {this.setState({movieHistory: movies})});
 		// });
+
+
 		var movIds = [];
 		var movies = [];
 		firebase.db.collection('histories')
 			.doc(Cookie.get())
 			.get()
 			.then(doc => {
-				var movies = [];
-				doc.data().Movies.forEach(movie => {
-					movIds.push(movie);
-					movies.push(firebase.db.doc(`/movies/${"10020"}`));
-				});
-				// movIds.forEach(function(movId) {
-				// 	firebase.db.collection('movies')
-				// 		.doc(movId)
-				// 		.get()
-				// 		.then(doc => {
-				// 			movies.push(doc.data());
-				// 		});
-				// });
-				this.setState({movieHistory: movies}, () => {console.log(this.state);});
+				movIds = doc.data().Movies.map(movie => {
+					return firebase.db.collection('movies')
+						.doc(movie)
+						.get()
+						.then(doc => {
+							return doc.data();
+						});
+					
+				})
+				Promise.all(movIds).then(values => {
+					this.setState({movieHistory: values});
+					console.log(this.state.movieHistory);
+				})
 			});
 	}
 
 
 	render(){
-		console.log(this.state.movieHistory);
-		let historyMovies = [];
-		let movs = this.state.movieHistory;
-		console.log(movs);
-		movs.forEach(movie => {
-			historyMovies.push(<HistoryMovie title={movie.title} overview={movie.overview} />);
-			console.log("Added Movie");
+
+		let historyMovies = this.state.movieHistory.map(movie => {
+			return <HistoryMovie title={movie.title} overview={movie.overview} />
 		});
 		return(
 
