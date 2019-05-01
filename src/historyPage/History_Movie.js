@@ -1,5 +1,6 @@
 import React from 'react';
 import firebase from '../libraries/Firestore';
+import { withRouter } from 'react-router-dom';
 import './history.css';
 
 class HistoryMovie extends React.Component {
@@ -19,4 +20,4 @@ class HistoryMovie extends React.Component {
 	}
 }
 
-export default HistoryMovie
+export default withRouter(HistoryMovie)

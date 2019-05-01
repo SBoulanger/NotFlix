@@ -24,8 +24,8 @@
 
 .Notflix-logo {
         width: 90%;
-        height: auto; 
-        padding-top: 100px; 
+        height: auto;
+        padding-top: 100px;
 }
 
 .Corner-column {
@@ -58,6 +58,7 @@
 .CreateBtn {
         padding-right: 200px;
         padding-left: 200px;
+        padding-bottom: 150px;
 }
 
 .Welcome-label {
@@ -76,13 +77,13 @@
         padding-bottom: 20px;
 }
 
-.Error-label {
+.Error-label{
         font-family: "Helvetica Neue";
         font-size: 15px;
         color: red;
         font-weight: bold;
         text-align: left;
-        padding-top: 7px;  
+        padding-top: 7px;
 }
 
 .Password-label {
@@ -122,4 +123,3 @@
         font-size: calc(10px +2vmin);
         color: white;
 } */
-
