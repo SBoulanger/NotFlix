@@ -25,7 +25,7 @@ import firebase from "./Firestore";
  */
 class MovieSearch{
     constructor(method = "", size = 5, genre = "none") {
-        var moviesRef = firebase.firestore().collection('movies')
+        var moviesRef = firebase.db.collection('movies')
         if(genre == "none"){
             switch(method.toLowerCase()) {
                 case "highestRating":
@@ -76,7 +76,7 @@ export default MovieSearch
                         //therefore it's a read only copy of the data.
                         //To modify the data you need to do something
                         //like:
-                          firebase.firestore().collection('movies').doc(doc.id).update({popularity: popularity + 1});
+                          firebase.db.collection('movies').doc(doc.id).update({popularity: popularity + 1});
 
                     }
                     else{

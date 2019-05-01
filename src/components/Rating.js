@@ -1,21 +1,32 @@
 import React from 'react';
-//import firebase from './Firestore'
-//import { AppRegistry, View } from 'react-native';
-
-
-const styles = {
-    margin: '20px',
-    width: '200px',
-    height: '200px',
-};
-
+import firebase from '../libraries/Firestore'
 
 class Rating extends React.Component {
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            rating : ""
+        };
+    }
+    componentDidMount() {
+        var movieRef = firebase.db.collection('movies').doc(this.props.movieID);
+        var getMovie = movieRef.get()
+            .then(doc => {
+                if (doc.exists) {
+                    this.setState({
+                        rating: doc.data().vote_average/2 + "/5"
+                    })
+                }
+                else {
+                    this.setState({
+                        rating: "N/A"
+                    })
+                }
+            });
+    }
    render() {
       return (
-      <img src={require('../imgs/examplerating.png')} alt="Logo" style={styles}/>
-
+          <div><h1>{this.state.rating}</h1></div>
       );
    }
 }
