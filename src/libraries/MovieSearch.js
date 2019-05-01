@@ -24,7 +24,7 @@ class MovieSearch {
             return searchGenre(keyword, orderby, size);
         }
         else
-            return "invalid";
+            return ;
     }
 }
 
@@ -35,8 +35,9 @@ class MovieSearch {
     Case sensitive, user input will need to be altered to circumvent that
 */
 function searchTitle(keyword, orderby, size) {
+    keyword = keyword.toLowerCase();
     var moviesRef = firebase.firestore().collection('movies');
-    return moviesRef.orderBy('title').startAt(keyword).endAt(keyword+"\uf8ff");
+    return moviesRef.orderBy('search_title').startAt(keyword).endAt(keyword+"\uf8ff").limit(size);
 }
 
 /*
@@ -46,8 +47,8 @@ function searchTitle(keyword, orderby, size) {
     ** will also limit the possible keywords to prevent searching for movie titles **
 */
 function searchGenre(keyword, orderby, size) {
-    var moviesRef = firebase.firestore().collection('movies');
     keyword = keyword.charAt(0).toUpperCase() + keyword.slice(1).toLowerCase();
+    var moviesRef = firebase.firestore().collection('movies');
     return moviesRef.where('genres', "array-contains", keyword).limit(size);
 }
 
