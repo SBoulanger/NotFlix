@@ -2,7 +2,7 @@ import React from 'react';
 import NavBar from "../components/NavBar";
 import { withRouter } from 'react-router-dom';
 import TopDisplay from "./TopDisplay";
-import MultiMovieCarousel from "./MultimovieCarousel";
+import GenreDisplay from "./GenreDisplay";
 
 class HomePage extends React.Component{
     render() {
@@ -10,7 +10,8 @@ class HomePage extends React.Component{
             <div>
                 <NavBar/>
                 <TopDisplay/>
-                <MultiMovieCarousel/>
+                <GenreDisplay numMov={10} genre={'Action'}/>
+                <GenreDisplay numMov={10} genre={'Comedy'}/>
             </div>
         );
     }
