@@ -70,8 +70,8 @@ class NavBar extends React.Component {
         }
         return (
           <div className="ui-header">
-              <a className="logo" href="#logo">
-                  <img className="logo" src={NotflixLogo} height={70} alt="this is wack"/>
+              <a className="logo">
+                  <img className="logo" onClick={this.CheckHome} src={NotflixLogo} height={70} alt="this is wack"/>
               </a>
               <button onClick={this.CheckHome} id ='home_button'> Home </button>
               <button onClick={this.CheckProfile} id='profile_button'> Profile </button>

@@ -57,7 +57,7 @@ class SignIn extends Component {
 
    Agree(){
       Cookie.create(firebase.auth.currentUser.uid);
-      this.props.history.push('/history');
+      this.props.history.push('/home');
    }
 
    /*WORKING: Rerenders page to sign up page for new users*/
