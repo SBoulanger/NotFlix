@@ -3,14 +3,10 @@ import HistoryProfileLeft from './history_profile_left';
 import HistoryProfileSocialBox from './History_Profile_SocialBox';
 import HistoryProfileRight from './History_Profile_Right';
 import fire from '../libraries/Firestore';
-import { withRouter } from 'react-router-dom';
 import './history.css'
-const style = {
-  display: 'flex',
-  alignItems: 'center',
-  padding: "20px",
-  background: "#eee"
-};
+import { withRouter } from 'react-router-dom';
+
+
 
 class HistoryProfile extends React.Component {
 
