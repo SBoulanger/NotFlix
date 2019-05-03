@@ -1,5 +1,7 @@
 import React from 'react';
-import firebase from '../libraries/Firestore'
+import firebase from '../libraries/Firestore';
+import Cookie from '../libraries/Cookie';
+
 class HistoryProfileLeft extends React.Component {
   constructor(props) {
     super(props);
@@ -13,8 +15,9 @@ class HistoryProfileLeft extends React.Component {
     };
   }
   componentDidMount() {
-   firebase.db.collection('users')
-    .doc('P3Fb8A9YaxaLcobOGejl')
+    const autoID = Cookie.get();
+    firebase.db.collection('users')
+    .doc(autoID)
     .get()
     .then(doc => this.setState({
       userName: doc.data().username,
