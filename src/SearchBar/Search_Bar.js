@@ -4,18 +4,24 @@ import fire from "../libraries/Firestore";
 import MovieSearch from "../libraries/MovieSearch";
 
 var keyword = "";
+var searchType = "Title";
 
 class Search_Bar extends React.Component {
 
     constructor() {
         super();
-        this.changeHandler = this.changeHandler.bind(this);
-        this.buttonClicked = this.buttonClicked.bind(this);
+        this.keywordHandler = this.keywordHandler.bind(this);
+        this.searchButton = this.searchButton.bind(this);
+        this.typeButton = this.typeButton.bind(this);
     }
 
-    buttonClicked(e) {
+    keywordHandler(e) {
+        keyword = e.target.value;
+    }
+
+    searchButton(e) {
         if(keyword != "") {
-            var queryRef = new MovieSearch(keyword, "title", "", 2);
+            var queryRef = new MovieSearch(keyword, searchType, "", 2);
             var getMovie = queryRef.get().then(query => {
                 if (query.empty) {
                     // empty query = no movies found
@@ -39,25 +45,38 @@ class Search_Bar extends React.Component {
         }
     }
 
-    changeHandler(e) {
-        keyword = e.target.value;
+    typeButton(e) {
+        if(searchType == "Title")
+            searchType = "Genre";
+        else if(searchType == "Genre")
+            searchType = "Title";
+        document.getElementById("typeB").childNodes[0].nodeValue = searchType;
     }
 
     render() {
         return (
             <div className="ui-header">
                 <input 
-                    href="#search" 
+                    href="#keyword" 
                     className="search-bar" 
                     type="Text" 
-                    onChange={this.changeHandler}
+                    onChange={this.keywordHandler}
                     placeholder="Search..."
                 />
                 <button 
-                    href="#search"
-                    onClick={this.buttonClicked}
-                    className="search_button">Search</button>
-                
+                    type = "button"
+                    id = "typeB"
+                    onClick={this.typeButton}
+                    className="type-button">
+                    Title 
+                </button>
+                <button 
+                    href="#search button"
+                    type = "button"
+                    onClick={this.searchButton}
+                    className="search-button">
+                    Search
+                </button>            
             </div>
         )
     }
