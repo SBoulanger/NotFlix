@@ -23,8 +23,6 @@ class MovieSearch {
         else if(searchtype.toLowerCase() == "genre") {
             return searchGenre(keyword, orderby, size);
         }
-        else
-            return ;
     }
 }
 
