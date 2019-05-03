@@ -3,7 +3,9 @@
     height: 30px;
     min-width: 300px;
 
-
+}
+.ui-header.search-button {
+    padding-left: 20px;
 }
 
 .ui-header a {
@@ -22,9 +24,16 @@
 .search-bar {
     display: inline-block;
     height: 30px;
-    margin-left: 200px;
+    margin-left: 100px;
+    margin-right: 5px;
     min-width: 200px;
+    max-width: 500px;
     padding-left: 100px;
+    
+}
+
+.search-button {
+    margin-right: 20px;
 }
 
 .home {
