@@ -21,7 +21,7 @@ class HistoryProfileLeft extends React.Component {
     .get()
     .then(doc => this.setState({
       userName: doc.data().username,
-      bio: doc.data().Biography}));
+      bio: doc.data().bio}));
   }
 
   render() {
