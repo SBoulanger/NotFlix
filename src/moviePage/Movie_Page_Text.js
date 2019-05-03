@@ -30,9 +30,9 @@ class Movie_Page_Text extends React.Component {
 
     render() {
         return (
-            <div class = "titleui">
+            <div className = "titleui">
                 {this.state.title}
-                <div class ="smallui">
+                <div className ="smallui">
                     <img src={require('../imgs/linedivider.png')} width ={1200} height ={50} alt = {"line"}/>
                     <p> {this.state.description} </p>
                 </div>

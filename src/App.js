@@ -5,6 +5,7 @@ import HistoryPage from './historyPage/History_Page';
 import SignIn from './loginPage/SignIn';
 import NewSignUp from './loginPage/NewSignUp';
 import MoviePage from "./moviePage/Movie_Page";
+import HomePage from "./homePage/HomePage";
 
 class App extends React.Component {
 
@@ -18,6 +19,7 @@ class App extends React.Component {
             <Route path='/movie/:id' component={MoviePage} />
             <Route exact path='/history' component={HistoryPage} />
             <Route exact path='/newUser' component={NewSignUp} />
+            <Route exact path='/home' component={HomePage} />
         </Switch>
         </div>
       </Router>

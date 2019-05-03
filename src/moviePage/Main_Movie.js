@@ -11,7 +11,7 @@ class MainMovie extends React.Component{
             <div className = "mainmovie">
                 <div className ="mainmovieimg"><Movieimg /></div>
                 <div className="mainmovietext"> <Movie_Page_Text movieID={this.props.movieID}/></div>
-                <div className="mainmovierating"><Rating /></div>
+                <div className="mainmovierating"><Rating movieID={this.props.movieID}/></div>
             </div>
         );
     }
