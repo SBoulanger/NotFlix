@@ -8,8 +8,9 @@ import firebase from '../libraries/Firestore'
 import LoginButton from './LoginButton.js';
 import SignupButton from './SignupButton.js';
 import SignInUpTextBox from './Sign_in_up_textbox.js';
-import History_Page from '../historyPage/History_Page';
 import Cookie from '../libraries/Cookie';
+import NavBar from '../components/NavBar';
+import { withRouter } from 'react-router-dom';
 
 class SignIn extends Component {
 
@@ -24,45 +25,46 @@ class SignIn extends Component {
       }
       this.toSignUp = this.toSignUp.bind(this);
       this.LogIn = this.LogIn.bind(this);
+      this.Agree = this.Agree.bind(this);
       this.updateInput = this.updateInput.bind(this);
    }
 
-   /*COMPLETE
-   1) Authenticate via Firestore with given email and password
-   2) If doesn't exist, warn user.
-   */
    LogIn(){
+      console.log('Authenticate users here');
       const email = this.state.email;
       const password = this.state.password;
-      if (password === ''){
+
+      if (password === '') {
          this.setState({ passwordMessage: "Please type in your password"})
       }
-      if (email === ''){
+      if (email === '') {
          this.setState({ emailMessage: "Please type in your email address"})
+         console.log("Please fill in all fields that are given")
       }
-      if (password!== '' && email !==''){
-         firebase.userLogin(email,password).then(success => {
-            if(success) {this.setState({isLoggedin:true}) 
-         }
-      }).catch(error => {
-            this.setState({passwordMessage:"Please check your password"}) 
-            this.setState({emailMessage: "Please check your email address"})
+
+      if (password !== '' && email !== '') {
+         firebase.userLogin(email, password).then(success => {
+            if (success) {
+               this.setState({ isLoggedin: true })
+            }
+         })
+         .catch(error => {
+            this.setState({ passwordMessage: "Please check your password"})
+            this.setState({ emailMessage: "Please check your email address"})
          })
       }
    }
-    
+
    Agree(){
-      //Create cookie and redirect to history page
       Cookie.create(firebase.auth.currentUser.uid);
-      ReactDOM.render(<History_Page/>, document.getElementById('root'));
+      this.props.history.push('/home');
    }
 
    /*WORKING: Rerenders page to sign up page for new users*/
    toSignUp(){
-      ReactDOM.render(<NewSignUp/>,document.getElementById('root'));
+      this.props.history.push('/newUser');
    }
 
-   /*WORKING: Intended to update state to whatever is in InputTextBox */
    updateInput = e => {
       this.setState({
          [e.target.name]: e.target.value
@@ -72,6 +74,7 @@ class SignIn extends Component {
    render() {
       return (
          <div className = "SignIn">
+            <NavBar />
             <div className = "Corner-column">
                <img src = {Shooting} className = "Shooting"/>
             </div>
@@ -86,22 +89,34 @@ class SignIn extends Component {
                   <div className = "Email-column">
                      <div className = "Email-label"> Email Address </div>
                      <div> <SignInUpTextBox type = "text" id = "EmailBox" name="email" value = {this.state.email} onchange={this.updateInput}/> </div>
+                     <div className = "Error-label"> {this.state.emailMessage} </div>
                   </div>
                   <div className = "Password-column">
                      <div className = "Password-label"> Password </div>
                      <div> <SignInUpTextBox type = "password" id = "PasswordBox" name="password" value = {this.state.password} onchange={this.updateInput} /> </div>
+                     <div className = "Error-label"> {this.state.passwordMessage} </div>
                   </div>
                   <div className = "Button-container">
-                     <div className = "LoginBtn"> <LoginButton onClick={this.LogIn} id ='signinbutton' text="Login"/> </div>
-                     <div className = "SignupBtn"> <SignupButton onClick={this.toSignUp} id ='signupbutton' text="Sign Up"/> </div>
+                     <div className = "LoginBtn">
+                     {!this.state.isLoggedin ? (
+                        <LoginButton onClick={this.LogIn} id ='signinbutton' text="Login"/>
+                     ) : (
+                        <LoginButton onClick={this.Agree} id ='agreebutton' text="Agree"/>
+                     )}
+                     </div>
+                     <div className = "SignupBtn">
+                     {!this.state.isLoggedin ? (
+                        <SignupButton onClick={this.toSignUp} id ='signupbutton' text="Sign Up"/>
+                     ) : (
+                        <div className = "Cookie-label"> This website is using cookies, please accept </div>
+                     )}
+                     </div>
                   </div>
                </div>
             </div>
           </div>
       );
    }
-
-
 }
-//<p style = {{cursor: 'pointer'}} onClick = {this.toSignUp}>Not a member?" /> </p>
-export default SignIn;
+
+export default withRouter(SignIn);

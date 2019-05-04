@@ -30,8 +30,8 @@ body {
 }
 .mainmovierating{
   position: absolute;
-  right: 0px;
-  top: 60px;
+  right: 200px;
+  top: 115px;
 }
 .largeui {
   font-size: 3em;
@@ -44,4 +44,36 @@ body {
 
 .titleui {
   font-size: 80px;
+}
+
+.homefilmdisplay{
+  width: 1200px;
+  height: 300px;
+  border-style: groove;
+  margin-left: 240px;
+}
+.hometitle{
+  font-size: 80px;
+  display: flex;
+  align-items: center;
+  width: 1200px;
+  height:235px;
+  justify-content: center;
+}
+.hometag{
+  font-size: 25px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.genrefilmdisplay{
+  width: 250px;
+  height: 200px;
+  border-style: groove;
+  text-align: center;
+  line-height:200px;
+}
+.genrename{
+  font-size: 30px;
+  margin-left: 150px;
 }

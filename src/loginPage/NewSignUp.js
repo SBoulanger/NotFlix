@@ -9,6 +9,7 @@ import LoginButton from './LoginButton.js';
 import SignInUpTextBox from './Sign_in_up_textbox.js';
 import Cookie from '../libraries/Cookie';
 import History_Page from '../historyPage/History_Page';
+import {withRouter} from 'react-router-dom';
 
 class NewSignUp extends Component {
 
@@ -18,7 +19,7 @@ class NewSignUp extends Component {
          user: '',
          email: '',
          password:'',
-         confirmationPassword:'',
+         confirmPassword:'',
          isCreated: false,
          emailMessage: '',
          userMessage: '',
@@ -31,57 +32,45 @@ class NewSignUp extends Component {
 
    /* Re-renders page using SignIn.js component */
    toSignIn(){
-      ReactDOM.render(<SignIn/>, document.getElementById('root'));
+      this.props.history.push('/')
    }
 
-   /* COMPLEETE: Update state to whatever is in InputTextBox */
+   /* WORKING: Intended to update state to whatever is in InputTextBox */
    updateInput = e => {
       this.setState({
          [e.target.name]: e.target.value
       });
    }
 
-   /* COMPLETE
-      1) make new document in Firestore with new credentials 
-      2) generate cookie
-      3) redirect to user's home page
-   */
    addUser = e => {
       e.preventDefault();
+
       const name = this.state.user;
       const email = this.state.email;
       const password = this.state.password;
       const confirmPassword = this.state.confirmPassword;
-      
-      //Clear out any existing cookies on website
+
       if (Cookie.exists()) {
          Cookie.destroy();
       }
-      
-      /*COMPLETE: Check so that password and confirmation states are same string.
-      If password == confirmation, proceed below. Else, show user that there is a mistake
-      or a user with those credentials doesn't exist.*/
-      if (name === ''){
+
+      if (name === '') {
          this.setState({ userMessage: "Please type in your username"})
       }
-      if (password === ''){
+
+      if (password === '') {
          this.setState({ passwordMessage: "Please type in your password"})
       }
       if (email === '') {
          this.setState({ emailMessage: "Please type in your email address"})
       }
-      if (password !== confirmPassword){
-         this.setState({ passwordMessage: "Your confirmation does not match your password"})
-      }
-      else {
-         if (password !== '' && email !== '' && name !== ''){
-            firebase.createUser(name,email,password).then(sucess =>{
-               //if successful
-               this.setState({ isCreated: true,
-                              passwordMessage: "", 
-                              emailMessage: "",
-                              userMessage:""});
-                              
+
+      if (password !== confirmPassword) {
+         this.setState({ passwordMessage: "Please make sure your password and confirm password match"})
+      } else {
+         if (password !== '' && email !== '' && name !== '') {
+            firebase.createUser(name, email, password).then(success => {
+               this.setState({ isCreated: true, passwordMessage: "", emailMessage: "", userMessage: "" });
             })
             .catch(error => {
                this.setState({ userMessage: ""})
@@ -91,8 +80,7 @@ class NewSignUp extends Component {
          }
       }
    }
-   
-   // COMPLETE: Make cookie then redirect to user's history page.
+
    Agree = e => {
       e.preventDefault();
       const name = this.state.user;
@@ -102,15 +90,18 @@ class NewSignUp extends Component {
          imageURL: "",
          bio: ""
       })
+
       firebase.db.collection('histories').doc(firebase.auth.currentUser.uid).set({
          Movies: []
       })
+
       Cookie.create(firebase.auth.currentUser.uid);
-      ReactDOM.render(<History_Page/>, document.getElementyById('root'));
+      this.props.history.push('/history')
    }
 
-
+   /*Initial render*/
    render() {
+
       return (
          <div className = "NewSignUp">
             <div className = "Corner-column">
@@ -126,23 +117,37 @@ class NewSignUp extends Component {
                   </div>
                   <div className = "Email-column">
                      <div className = "Email-label"> Username </div>
-                     <div> <SignInUpTextBox type = "text" id = "UserBox" name="user" value = {this.state.username} onchange={this.updateInput}/> </div>
+                     <div> <SignInUpTextBox type = "text" id = "UserBox" name="user" value = {this.state.user} onchange={this.updateInput}/> </div>
+                     <div className = "Error-label"> {this.state.userMessage} </div>
                   </div>
                   <div className = "Email-column">
                      <div className = "Email-label"> Email Address </div>
                      <div> <SignInUpTextBox type = "text" id = "EmailBox" name="email" value = {this.state.email} onchange={this.updateInput}/> </div>
+                     <div className = "Error-label"> {this.state.emailMessage} </div>
                   </div>
                   <div className = "Password-column">
                      <div className = "Password-label"> Password </div>
                      <div> <SignInUpTextBox type = "password" id = "PasswordBox" name="password" value = {this.state.password} onchange={this.updateInput} /> </div>
+                     <div className = "Error-label"> {this.state.passwordMessage} </div>
                   </div>
                   <div className = "Password-column">
                      <div className = "Password-label"> Confirm Password </div>
-                     <div> <SignInUpTextBox type = "password" id = "PasswordBox" name="password" value = {this.state.confirmation} onchange={this.updateInput} /> </div>
+                     <div> <SignInUpTextBox type = "password" id = "ConfirmBox" name="confirmPassword" value = {this.state.confirmPassword} onchange={this.updateInput} /> </div>
                   </div>
                   <div>
-                     <div className = "CreateBtn"> <LoginButton  onClick={this.addUser} id ='createButton' text="Create"/> </div>
+                     <div className = "CreateBtn">
+                     {!this.state.isCreated ? (
+                        <LoginButton  onClick={this.addUser} id ='createButton' text="Create"/>
+                     ) : (
+                        <LoginButton onClick={this.Agree} id ='agreebutton' text="Agree"/>
+                     )}
+                     </div>
                   </div>
+                  {!this.state.isCreated ? (
+                     <div className = "Agreelabel"></div>
+                  ) : (
+                     <div className = "Agreelabel"> By signing up, you agree to our Terms , Data Policy and Cookies Policy. </div>
+                  )}
                </div>
             </div>
           </div>
@@ -150,4 +155,9 @@ class NewSignUp extends Component {
    }
 }
 
-export default NewSignUp;
+export default withRouter(NewSignUp);
+
+
+// firebase.db.collection('histories').doc(firebase.auth.currentUser.uid).set({
+//    Movies: []
+// })
