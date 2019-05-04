@@ -16,7 +16,6 @@ import firebase from "./Firestore";
 */
 class MovieSearch {
     constructor(keyword = "", searchtype = "", orderby = "", size = 1) {
-        console.log("Searching for %s: %s", searchtype, keyword);
         if(searchtype.toLowerCase() == "title") {
             return searchTitle(keyword, orderby, size);
         }
