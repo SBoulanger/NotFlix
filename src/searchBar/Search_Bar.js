@@ -22,7 +22,7 @@ class Search_Bar extends React.Component {
 
     searchButton(e) {
         if(keyword != "") {
-            var queryRef = new MovieSearch(keyword, searchType, "", 2);
+            var queryRef = new MovieSearch(searchType, 2, keyword);
             this.setState({
               results: []
             });

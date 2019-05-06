@@ -2,7 +2,7 @@ import firebase from "./Firestore";
 
 /*
     Movie search class
-    @params: keyword, searchtype, orderby, size
+    @params: searchtype, size, keyword
     keyword: a movie or genre that you are searching for
     searchtype: specifies if you are searching for a movie or a genre
     orderby: orders the query based on the request (i.e highest rated, etc...)
@@ -15,14 +15,15 @@ import firebase from "./Firestore";
     ** sorting will be added shortly in the future **
 */
 class MovieSearch {
-    constructor(keyword = "", searchtype = "", orderby = "", size = 1) {
+    constructor(searchtype = "", size = 1, keyword = "") {
+
         if(searchtype.toLowerCase() == "title") {
-            return searchTitle(keyword, orderby, size);
+            return searchTitle(keyword, size);
         }
         else if(searchtype.toLowerCase() == "genre") {
-            return searchGenre(keyword, orderby, size);
+            return searchGenre(keyword, size);
         }
-	else if (searchtype.toLowerCase() == "release_date") {
+	else if (searchtype.toLowerCase() == "newest") {
 	    return searchNewest(size);
 	}
 	else if (searchtype.toLowerCase() == "highest_rated") {
@@ -37,7 +38,7 @@ class MovieSearch {
     i.e: "John Wick" will produce "John Wick" and "John Wick 2" as hits
     Case sensitive, user input will need to be altered to circumvent that
 */
-function searchTitle(keyword, orderby, size) {
+function searchTitle(keyword, size) {
     keyword = keyword.toLowerCase();
     var moviesRef = firebase.db.collection('movies');
     return moviesRef.orderBy('search_title').startAt(keyword).endAt(keyword+"\uf8ff").limit(size);
@@ -49,7 +50,7 @@ function searchTitle(keyword, orderby, size) {
     ** will be changed to allow multiple genres to be searched for in the future **
     ** will also limit the possible keywords to prevent searching for movie titles **
 */
-function searchGenre(keyword, orderby, size) {
+function searchGenre(keyword, size) {
     keyword = keyword.charAt(0).toUpperCase() + keyword.slice(1).toLowerCase();
     var moviesRef = firebase.db.collection('movies');
     return moviesRef.where('genres', "array-contains", keyword).limit(size);

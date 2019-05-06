@@ -14,7 +14,11 @@ class GenreDisplay extends React.Component{
     }
 
     componentDidMount() {
-        var queryRef = new MovieSearch(this.props.sortType || "highestRanking", this.props.numMov, this.props.genre);
+	if (this.props.genre == "none"){
+            var queryRef = new MovieSearch(this.props.sortType || "highest_rated", this.props.numMov);
+	} else {
+            var queryRef = new MovieSearch("genre", this.props.numMov, this.props.genre);
+	}
         queryRef.get()
             .then(query => {
                 if (query.empty) {
