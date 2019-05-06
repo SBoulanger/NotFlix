@@ -22,6 +22,12 @@ class MovieSearch {
         else if(searchtype.toLowerCase() == "genre") {
             return searchGenre(keyword, orderby, size);
         }
+	else if (searchtype.toLowerCase() == "release_date") {
+	    return searchNewest(size);
+	}
+	else if (searchtype.toLowerCase() == "highest_rated") {
+	    return searchHighestRated(size);
+	}
     }
 }
 
@@ -47,6 +53,24 @@ function searchGenre(keyword, orderby, size) {
     keyword = keyword.charAt(0).toUpperCase() + keyword.slice(1).toLowerCase();
     var moviesRef = firebase.db.collection('movies');
     return moviesRef.where('genres', "array-contains", keyword).limit(size);
+}
+/*
+ * search for the newest movies
+ * will fetch titles that are most recent
+ */
+function searchNewest(size) {
+    var moviesRef = firebase.db.collection('movies');
+    return moviesRef.orderBy('release_date', 'desc').limit(size);
+}
+
+/*
+ * search for highest Rated
+ * will fetch titles that are highest rated
+ */
+
+function searchHighestRated(size) {
+    var moviesRef = firebase.db.collection('movies');
+    return moviesRef.orderBy('vote_average', 'desc').limit(size);
 }
 
 export default MovieSearch
