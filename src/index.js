@@ -4,12 +4,13 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './libraries/serviceWorker';
+import Search from './searchBar/Search_Bar'
 
 //You can change this render function to check on your components
 //Change HistoryProfile to YourAppFile
 ReactDOM.render((
   <Router>
-    <App />
+    <Search />
   </Router>
 ), document.getElementById('root'))
 

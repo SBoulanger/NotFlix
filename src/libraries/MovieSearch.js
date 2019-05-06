@@ -33,7 +33,7 @@ class MovieSearch {
 */
 function searchTitle(keyword, orderby, size) {
     keyword = keyword.toLowerCase();
-    var moviesRef = firebase.firestore().collection('movies');
+    var moviesRef = firebase.db.collection('movies');
     return moviesRef.orderBy('search_title').startAt(keyword).endAt(keyword+"\uf8ff").limit(size);
 }
 
@@ -45,7 +45,7 @@ function searchTitle(keyword, orderby, size) {
 */
 function searchGenre(keyword, orderby, size) {
     keyword = keyword.charAt(0).toUpperCase() + keyword.slice(1).toLowerCase();
-    var moviesRef = firebase.firestore().collection('movies');
+    var moviesRef = firebase.db.collection('movies');
     return moviesRef.where('genres', "array-contains", keyword).limit(size);
 }
 
