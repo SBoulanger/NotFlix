@@ -3,9 +3,23 @@ import './NavBar.css';
 import fire from "../libraries/Firestore";
 import MovieSearch from "../libraries/MovieSearch";
 
+/*
+    vars for temp storage
+    keyword is what user is searching for
+    searchType is the category that user will search the 
+    keyword in. Possible categories: Title , Genre
+*/
 var keyword = "";
 var searchType = "Title";
 
+/*
+    Search Bar class.
+    Usage: [      keyword     ] [searchType] [Search Button]
+    User enters in query in keyword field.
+    User can switch between searching for movie Titles or Genre by clicking 
+    on the searchType button.
+    System preforms search when the Search Button is clicked
+*/
 class Search_Bar extends React.Component {
 
     constructor(props) {
@@ -16,10 +30,22 @@ class Search_Bar extends React.Component {
         this.state = {results: []};
     }
 
+    /*
+        continuously updates the keyword var with whatever is in
+        the keyword text field
+    */
     keywordHandler(e) {
         keyword = e.target.value;
     }
 
+    /*
+        [Search Button]
+        Will search for keyword within the specified searchType
+        If results are found the Title of Movies will and their tag lines 
+        will be displayed under the search bar.
+        If no results are found a prompt that tells the user that no results were
+        found will be displayed under the search bar.
+    */
     searchButton(e) {
         if(keyword != "") {
             var queryRef = new MovieSearch(searchType, 2, keyword);
@@ -70,6 +96,12 @@ class Search_Bar extends React.Component {
         }
     }
 
+    /*
+        [ searchType ]
+        This button will specify the category that the search will look for.
+        Only "Title" and "Genre" are availiable.
+        Clicking on the button will switch between categories.
+    */
     typeButton(e) {
         if(searchType == "Title")
             searchType = "Genre";
