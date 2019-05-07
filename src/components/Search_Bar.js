@@ -33,6 +33,7 @@ class Search_Bar extends React.Component {
     /*
         continuously updates the keyword var with whatever is in
         the keyword text field
+        @param e is whatever change is detected in the text field
     */
     keywordHandler(e) {
         keyword = e.target.value;
@@ -45,6 +46,7 @@ class Search_Bar extends React.Component {
         will be displayed under the search bar.
         If no results are found a prompt that tells the user that no results were
         found will be displayed under the search bar.
+        @param e is the event of a click
     */
     searchButton(e) {
         if(keyword != "") {
@@ -101,6 +103,7 @@ class Search_Bar extends React.Component {
         This button will specify the category that the search will look for.
         Only "Title" and "Genre" are availiable.
         Clicking on the button will switch between categories.
+        @param e is the event of a click
     */
     typeButton(e) {
         if(searchType == "Title")
