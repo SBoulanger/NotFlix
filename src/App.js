@@ -1,59 +1,30 @@
 import React, { Component } from 'react';
+import { withRouter, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
-import fire from "./Firestore";
+import HistoryPage from './historyPage/History_Page';
+import SignIn from './loginPage/SignIn';
+import NewSignUp from './loginPage/NewSignUp';
+import MoviePage from "./moviePage/Movie_Page";
+import HomePage from "./homePage/HomePage";
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-     email: "",
-     username: ""
-    };
-  }
-
-  updateInput = e => {
-      this.setState({
-        [e.target.name]: e.target.value
-      });
-  }
-
-  addUser = e => {
-      e.preventDefault();
-      const db = fire.firestore();
-      db.settings({
-        timestampsInSnapshots: true
-      });
-      const userRef = db.collection("users").add({
-        username: this.state.username,
-        email: this.state.email
-      });  
-      this.setState({
-        username: "",
-        email: ""
-      });
-  };
 
   render() {
     return (
-      <form onSubmit={this.addUser}>
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          onChange={this.updateInput}
-          value={this.state.username}
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          onChange={this.updateInput}
-          value={this.state.email}
-        />
-        <button type="submit">Submit</button>
-      </form>
+
+    <Router>
+        <div>
+        <Switch>
+            <Route exact path='/' component={SignIn} />
+            <Route path='/movie/:id' component={MoviePage} />
+            <Route exact path='/history' component={HistoryPage} />
+            <Route exact path='/newUser' component={NewSignUp} />
+            <Route exact path='/home' component={HomePage} />
+        </Switch>
+        </div>
+      </Router>
     );
   }
 }
 
-export default App;
+export default withRouter(App);

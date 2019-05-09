@@ -6,22 +6,74 @@ body {
 
 .actionbar {
   background-color: rgb(36, 36, 36);
-  width: 1920px;
+  width: 100%;
   position: relative;
   height: 40px;
 }
 .actionbarelement {
   position: absolute;
-  right: 0px;
+  right: 50px;
+}
+.mainmovie{
+  width: 1920px;
+  position: relative;
+}
+.mainmovieimg{
+  position: absolute;
+  left: 40px;
+  top: 100px;
+}
+.mainmovietext{
+  position: absolute;
+  right: 200px;
+  top: 100px;
+}
+.mainmovierating{
+  position: absolute;
+  right: 200px;
+  top: 115px;
 }
 .largeui {
-  font-size: 15em;
+  font-size: 3em;
 }
 
 .smallui {
-  font-size: 12em;
+  font-size: 30px;
+  width: 1000px;
 }
 
 .titleui {
-  font-size: 24em;
+  font-size: 80px;
+}
+
+.homefilmdisplay{
+  width: 1200px;
+  height: 300px;
+  border-style: groove;
+  margin-left: 240px;
+}
+.hometitle{
+  font-size: 80px;
+  display: flex;
+  align-items: center;
+  width: 1200px;
+  height:235px;
+  justify-content: center;
+}
+.hometag{
+  font-size: 25px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.genrefilmdisplay{
+  width: 250px;
+  height: 200px;
+  border-style: groove;
+  text-align: center;
+  line-height:200px;
+}
+.genrename{
+  font-size: 30px;
+  margin-left: 150px;
 }
