@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import './NavBar.css';
 import NotflixLogo from '../imgs/Notflix.png';
 import Cookie from '../libraries/Cookie';
+import SearchBar from './Search_Bar';
 import Modal from './Modal'
 
 
@@ -75,7 +76,7 @@ class NavBar extends React.Component {
               </a>
               <button onClick={this.CheckHome} id ='home_button'> Home </button>
               <button onClick={this.CheckProfile} id='profile_button'> Profile </button>
-             <input href="#search" className="search-bar" type="text" placeholder="Search Movies and TV..."></input>
+             <SearchBar />
              {this.state.status}
          </div>
       )
